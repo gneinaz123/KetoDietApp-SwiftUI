@@ -1,8 +1,8 @@
 //
 //  MealPlanner.swift
-//  KetoDietApp-SwiftUI
+//  KetoDietApp
 //
-//  Created by user271428 on 5/2/25.
+//  Created by user270107 on 5/2/25.
 //
 
 import SwiftUI
