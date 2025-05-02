@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Filter: Identifiable, Hashable{
+    let id = UUID()
+    var category: NutrientCategory
+    var min: Int
+    var max: Int
+}
