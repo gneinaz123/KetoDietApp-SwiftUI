@@ -12,14 +12,21 @@ class APIService : RecipeServiceProtocol{
     private init() {}
     
     func fetchRecipes(for filters: [Filter], completion: @escaping ([RecipeDetails]) -> Void){
-        guard let filter = filters.first else{
+//        guard let filter = filters.first else{
+//            completion([])
+//            return
+//        }
+        guard !filters.isEmpty else{
             completion([])
             return
         }
-        let field = filter.category.apiField
-        let query = "\(field) = \(filter.min)-\(filter.max)g"
+//        let field = filter.category.apiField
+//        let query = "\(field) = \(filter.min)-\(filter.max)g"
+        let queryItems = filters.map { filter in
+            "\(filter.category.apiField) = \(filter.min) - \(filter.max)g"
+        }.joined(separator: "&")
         
-        guard let url = URL(string: "https://keto-diet.p.rapidapi.com/?\(query)") else{
+        guard let url = URL(string: "https://keto-diet.p.rapidapi.com/?\(queryItems)") else{
             completion([])
             return
         }
