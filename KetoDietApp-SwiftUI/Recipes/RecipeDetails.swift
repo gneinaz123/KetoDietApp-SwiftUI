@@ -11,7 +11,7 @@ struct RecipeDetails: Identifiable, Decodable{
     let id : Int
     let recipe: String
     let image: String
-    let calories: Int
+    let calories: Double?
     let protein_in_grams: Double?
     let fat_in_grams: Double?
     let carbohydrates_in_grams: Double?

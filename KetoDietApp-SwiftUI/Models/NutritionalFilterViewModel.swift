@@ -36,10 +36,33 @@ class NutritionalFilterViewModel: ObservableObject {
         filters.removeAll {$0.id == filter.id}
     }
     func searchRecipes(){
-        isLoading = true
-        APIService.shared.fetchRecipes(for: filters){ [weak self] recipes in
-            self?.recipes = recipes
-            self?.isLoading = false
+//        isLoading = true
+//        APIService.shared.fetchRecipes(for: filters){ [weak self] recipes in
+//            self?.recipes = recipes
+//            self?.isLoading = false
+//        }
+        guard let primaryFilter = filters.first else { return }
+        APIService.shared.fetchRecipes(for: primaryFilter.category.apiField, min: primaryFilter.min, max: primaryFilter.max){ [weak self] fetched in
+            guard let self = self else { return }
+            
+            self.recipes = fetched.filter { recipe in
+                self.filters.allSatisfy { filter in
+                    guard let value = self.getNutritionValue(for: filter.category, from: recipe) else{
+                        return false
+                    }
+                    return value >= Double(filter.min) && value <= Double(filter.max)
+                }
+            }
+            
+        }
+    }
+    private func getNutritionValue(for category: NutrientCategory, from recipe: RecipeDetails) -> Double?{
+        switch category{
+        case .protein: return recipe.protein_in_grams
+        case .fat: return recipe.fat_in_grams
+//        case .calories: return recipe.calories.map(Double.init)
+        case .calories: return recipe.calories
+        case .carbohydrates: return recipe.carbohydrates_in_grams
         }
     }
 }

@@ -37,7 +37,8 @@ struct NutritionalFilterView: View {
                         }
                         .buttonStyle(.borderedProminent)
                     }
-                    if !viewModel.filters.isEmpty{
+//                    if !viewModel.filters.isEmpty{
+                    VStack(alignment: .leading){
                         Text("Active Filters")
                             .font(.subheadline)
                         ForEach(viewModel.filters) { filter in
@@ -51,11 +52,18 @@ struct NutritionalFilterView: View {
                                 
                             }
                         }
-                        Button("Search Recipes"){
-                            viewModel.searchRecipes()
-                        }
-                        .padding(.top)
+//                        Button("Search Recipes"){
+//                            viewModel.searchRecipes()
+//                        }
+//                        .padding(.top)
                     }
+                    Button("Search Recipes"){
+                        viewModel.searchRecipes()
+                    }
+                    .padding()
+                    .background(Color.green)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())
                     if viewModel.isLoading{
                         ProgressView("Loading...")
                     } else{
