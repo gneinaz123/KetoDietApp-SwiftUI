@@ -50,19 +50,24 @@ class NutritionalFilterViewModel: ObservableObject {
                     guard let value = self.getNutritionValue(for: filter.category, from: recipe) else{
                         return false
                     }
-                    return value >= Double(filter.min) && value <= Double(filter.max)
+//                    return value >= Double(filter.min) && value <= Double(filter.max)
+                    return value >= (filter.min) && value <= (filter.max)
                 }
             }
             
         }
     }
-    private func getNutritionValue(for category: NutrientCategory, from recipe: RecipeDetails) -> Double?{
+    private func getNutritionValue(for category: NutrientCategory, from recipe: RecipeDetails) -> Int?{
         switch category{
-        case .protein: return recipe.protein_in_grams
-        case .fat: return recipe.fat_in_grams
+        case .protein:
+            return recipe.protein_in_grams.map { Int($0) }
+        case .fat:
+            return recipe.fat_in_grams.map { Int($0) }
 //        case .calories: return recipe.calories.map(Double.init)
-        case .calories: return recipe.calories
-        case .carbohydrates: return recipe.carbohydrates_in_grams
+        case .calories:
+            return recipe.calories
+        case .carbohydrates:
+            return recipe.carbohydrates_in_grams.map { Int($0)}
         }
     }
 }
