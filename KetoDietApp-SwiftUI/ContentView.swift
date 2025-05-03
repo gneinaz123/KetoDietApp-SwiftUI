@@ -11,10 +11,7 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!test1")
+            
             
             if UIDevice.current.userInterfaceIdiom == .pad {
                 // iPad Layout: Sidebar Navigation
@@ -62,10 +59,13 @@ struct ContentView: View {
                 .accentColor(Color(red: 0.196, green: 0.290, blue: 0.659))
                 
             }
-
+            
         }
         
-    }}
+    }
+    
+    
+}
 
 
 #Preview {
