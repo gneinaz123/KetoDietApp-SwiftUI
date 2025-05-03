@@ -22,7 +22,9 @@ struct RecipeCard: View {
             Text(recipe.recipe)
                 .font(.headline)
             
-            Text("Calories: \(recipe.calories)")
+            if let calories = recipe.calories{
+                Text("Calories: \(calories)")
+            }
             if let protein = recipe.protein_in_grams{
                 Text("Protein: \(protein)g")
             }

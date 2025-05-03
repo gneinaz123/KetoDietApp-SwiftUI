@@ -60,7 +60,8 @@ class NutritionalFilterViewModel: ObservableObject {
         switch category{
         case .protein: return recipe.protein_in_grams
         case .fat: return recipe.fat_in_grams
-        case .calories: return recipe.calories.map(Double.init)
+//        case .calories: return recipe.calories.map(Double.init)
+        case .calories: return recipe.calories
         case .carbohydrates: return recipe.carbohydrates_in_grams
         }
     }
