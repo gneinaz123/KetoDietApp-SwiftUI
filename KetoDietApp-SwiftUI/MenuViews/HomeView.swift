@@ -112,7 +112,7 @@ struct HomeView: View {
                 // Left side: Text
                 Text(text)
                     .font(.title2)
-                    .fontWeight(.bold)
+                  //  .fontWeight(.bold)
                     .padding(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -127,7 +127,7 @@ struct HomeView: View {
             .padding()
             .background(Color.white) // Background color of the card
             .cornerRadius(10) // Rounded corners
-            .shadow(radius: 5) // Optional: Shadow for card effect
+            .shadow(radius: 2) // Optional: Shadow for card effect
         }
     }
 
