@@ -14,15 +14,25 @@ struct NutritionalFilterView: View {
             ScrollView{
                 VStack(alignment: .leading, spacing: 16){
                     VStack(alignment: .leading, spacing: 12){
-                        Text("Customize your nutritional goals")
-                            .font(.headline)
-                        
-                        Picker("Select Category", selection: $viewModel.selectedCategory){
-                            ForEach(NutrientCategory.allCases) { category in
-                                Text(category.rawValue).tag(category)
-                            }
+                        HStack{
+                            Spacer()
+                            Text("Customize your nutritional goals")
+                                .font(.headline)
+                            Spacer()
                         }
-                        .pickerStyle(SegmentedPickerStyle())
+                        
+                        HStack{
+                            
+                            Spacer()
+                            Picker("Select Category", selection: $viewModel.selectedCategory){
+                                ForEach(NutrientCategory.allCases) { category in
+                                    Text(category.rawValue).tag(category)
+                                }
+                            }
+                            //                        .pickerStyle(SegmentedPickerStyle())
+                            .pickerStyle(MenuPickerStyle())
+                            Spacer()
+                        }
                         
                         HStack{
                             TextField("Min (g)", text: $viewModel.minAmount)
@@ -65,15 +75,19 @@ struct NutritionalFilterView: View {
                                 //                        }
                                 //                        .padding(.top)
                             }
-                            
+                        Spacer()
+                        HStack{
+                            Spacer()
                             Button("Search Recipes"){
                                 viewModel.searchRecipes()
                             }
                             .padding()
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth:150)
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .clipShape(Capsule())
+                            Spacer()
+                        }
                             
                         }
                         
@@ -95,9 +109,10 @@ struct NutritionalFilterView: View {
                 
                     
                 }
-                .navigationTitle("Nutritional Filter")
+                
                 
             }
+        .navigationTitle("Nutritional Filter")
             
         }
     }
