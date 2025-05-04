@@ -11,8 +11,6 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            
-            
             if UIDevice.current.userInterfaceIdiom == .pad {
                 // iPad Layout: Sidebar Navigation
                 NavigationSplitView {
