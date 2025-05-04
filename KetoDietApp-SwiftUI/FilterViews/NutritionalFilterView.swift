@@ -127,6 +127,11 @@ struct NutritionalFilterView: View {
     }
 
 
-#Preview {
-    NutritionalFilterView()
+struct NutritionalFilterView_Previews: PreviewProvider {
+    static var previews: some View {
+        NutritionalFilterView()
+            .environmentObject(NutritionalFilterViewModel()) // or a mock view model
+    }
 }
+
+
