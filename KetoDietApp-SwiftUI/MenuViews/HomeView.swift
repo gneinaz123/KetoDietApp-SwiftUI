@@ -20,19 +20,28 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Keto Diet APP")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 0.196, green: 0.290, blue: 0.659))
-                Spacer()
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
-                
+                VStack(spacing: -10) {
+                    Text("Keto Diet")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(red: 0.196, green: 0.290, blue: 0.659))
+
+                    Text("APP")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color(red: 0.196, green: 0.290, blue: 0.659))
+                        .padding(.top, 8)
+                }
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+
+                Image("logo")
+                                    
             }.padding()
             
             // Daily Target Section
             
-            BlueBoxText(text: "Your Daily Target").padding(.bottom,30)
+            BlueBoxText(text: "Your Daily Target").padding(.bottom,30).padding(.top,-10)
             
             if let latestGoal = savedGoals.first {
                             // Replace current values with real consumption logic when ready
@@ -48,7 +57,7 @@ struct HomeView: View {
             
             
                 // Today's Recipe Section
-            BlueBoxText(text: "Today's Recipe").padding(.vertical,30)
+            BlueBoxText(text: "Today's Recipe").padding(.vertical,20)
                           
             VStack {
                         CardView(text: "Sample Card 1", imageName: "play")
