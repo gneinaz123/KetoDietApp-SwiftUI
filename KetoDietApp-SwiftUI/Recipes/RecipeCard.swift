@@ -34,6 +34,9 @@ struct RecipeCard: View {
             if let carbs = recipe.carbohydrates_in_grams{
                 Text("Carbs: \(Int(carbs))g")
             }
+           
+            Text("Category: \(recipe.category.category)")
+            
         }
         .padding(.vertical, 6)
     }

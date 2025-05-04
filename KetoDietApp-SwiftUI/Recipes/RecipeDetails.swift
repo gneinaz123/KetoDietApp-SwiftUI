@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct RecipeCategory: Codable{
+    let id: Int
+    let category: String
+}
 struct RecipeDetails: Identifiable, Decodable{
     let id : Int
     let recipe: String
@@ -15,4 +19,5 @@ struct RecipeDetails: Identifiable, Decodable{
     let protein_in_grams: Double?
     let fat_in_grams: Double?
     let carbohydrates_in_grams: Double?
+    let category : RecipeCategory
 }

@@ -48,6 +48,15 @@ struct NutritionalFilterView: View {
                             }
                             .buttonStyle(.borderedProminent)
                         }
+                        HStack{
+                            Picker("Select Meal Category", selection: $viewModel.selectedMealCategory){
+                                Text("All").tag(MealCategory?.none)
+                                ForEach(MealCategory.allCases, id: \.self){ category in
+                                    Text(category.rawValue).tag(Optional(category))
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                        }
                         if !viewModel.filters.isEmpty{
                             VStack(alignment: .leading){
                                 Text("Active Filters")
