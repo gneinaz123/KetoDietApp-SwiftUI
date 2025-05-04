@@ -82,7 +82,8 @@ struct NutritionalFilterView: View {
                         } else{
                             VStack(alignment: .leading, spacing: 10){
                                 ForEach(viewModel.recipes){ recipe in
-                                    RecipeCard(recipe: recipe)
+                                    RecipeRow(recipe: recipe)
+                                    
                                 }
                             }
                             
