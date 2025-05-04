@@ -11,8 +11,6 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            
-            
             if UIDevice.current.userInterfaceIdiom == .pad {
                 // iPad Layout: Sidebar Navigation
                 NavigationSplitView {
@@ -20,7 +18,8 @@ struct ContentView: View {
                         NavigationLink(destination: HomeView()) {
                             Label("Home", systemImage: "house")
                         }
-                        NavigationLink(destination: SearchRecipeView()) {
+                        NavigationLink(destination:
+                                NutritionalFilterView()) {
                             Label("Recipe", systemImage:"heart")
                         }
                         NavigationLink(destination: MealPlanner()) {
@@ -43,7 +42,7 @@ struct ContentView: View {
                             Label("Home", systemImage: "house")
                         }
                     
-                    SearchRecipeView()
+                    NutritionalFilterView()
                         .tabItem {
                             Label("Recipe", systemImage: "heart")
                         }
@@ -66,6 +65,7 @@ struct ContentView: View {
     
     
 }
+
 
 
 #Preview {

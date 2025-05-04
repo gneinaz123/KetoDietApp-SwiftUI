@@ -6,8 +6,17 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HomeView: View {
+    
+    @FetchRequest(
+         entity: Goal.entity(),
+         sortDescriptors: [NSSortDescriptor(keyPath: \Goal.id, ascending: false)],
+         animation: .default
+     ) private var savedGoals: FetchedResults<Goal>
+     
+    
     var body: some View {
         VStack {
             HStack {
@@ -23,33 +32,23 @@ struct HomeView: View {
             
             // Daily Target Section
             
-            BlueBoxText(text: "Your Daily Target")
+            BlueBoxText(text: "Your Daily Target").padding(.bottom,30)
             
-            HStack {
-                // Progress bar
-                ProgressView(value: 20){
-                    // Percentage label
-                    Text("Calories: 1500 / 2000 kcal")
-                } .progressViewStyle(LinearProgressViewStyle(tint: Color(red: 0.196, green: 0.290, blue: 0.659)))
-                    .frame(height: 20)
-                
-                // Percentage label
-                Text("\(Int(1 * 100))%")
-                    .font(.subheadline)
-                    .padding(3)
-                    .frame(width: 50, alignment: .trailing)
-                    .bold()
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            }
-            .padding(10)
-            .padding()
+            if let latestGoal = savedGoals.first {
+                            // Replace current values with real consumption logic when ready
+                            NutrientProgressRow(label: "Protein", current: 60, goal: latestGoal.protein, unit: "g")
+                            NutrientProgressRow(label: "Fat", current: 45, goal: latestGoal.fat, unit: "g")
+                            NutrientProgressRow(label: "Carbs", current: 130, goal: latestGoal.carbohydrate, unit: "g")
+                            NutrientProgressRow(label: "Calories", current: 1500, goal: latestGoal.calories, unit: "kcal")
+                        } else {
+                            Text("No saved goals yet.")
+                                .foregroundColor(.gray)
+                                .padding()
+                        }
+            
             
                 // Today's Recipe Section
-            BlueBoxText(text: "Today's Recipe")
+            BlueBoxText(text: "Today's Recipe").padding(.vertical,30)
                           
             VStack {
                         CardView(text: "Sample Card 1", imageName: "play")
@@ -62,6 +61,42 @@ struct HomeView: View {
             
         }
     }
+    
+    
+    struct NutrientProgressRow: View {
+        var label: String
+        var current: Double
+        var goal: Double
+        var unit: String
+
+        var body: some View {
+            let safeCurrent = min(current, goal)
+
+            HStack {
+                ProgressView(value: safeCurrent, total: goal) {
+                    Text("\(label): \(Int(current)) / \(Int(goal)) \(unit)") .foregroundColor(Color(red: 0.196, green: 0.290, blue: 0.659))                }
+                .progressViewStyle(LinearProgressViewStyle(tint: Color(red: 0.196, green: 0.290, blue: 0.659)))
+                .frame(height: 20)
+                
+                Text("\(Int((current / max(goal, 1)) * 100))%") // Avoid division by zero
+                    .font(.subheadline)
+                    .padding(3)
+                    .frame(width: 50, alignment: .trailing)
+                    .bold()
+                    .background(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+            }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 30)
+
+        }
+    }
+
+    
+
     struct BlueBoxText: View {
         let text: String
 
@@ -112,7 +147,7 @@ struct HomeView: View {
                 // Left side: Text
                 Text(text)
                     .font(.title2)
-                    .fontWeight(.bold)
+                  //  .fontWeight(.bold)
                     .padding(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -127,7 +162,7 @@ struct HomeView: View {
             .padding()
             .background(Color.white) // Background color of the card
             .cornerRadius(10) // Rounded corners
-            .shadow(radius: 5) // Optional: Shadow for card effect
+            .shadow(radius: 2) // Optional: Shadow for card effect
         }
     }
 

@@ -11,19 +11,28 @@ class APIService : RecipeServiceProtocol{
     static let shared = APIService()
     private init() {}
     
-    func fetchRecipes(for filters: [Filter], completion: @escaping ([RecipeDetails]) -> Void){
-        guard let filter = filters.first else{
+    func fetchRecipes(for field: String, min: Int, max: Int, completion: @escaping ([RecipeDetails]) -> Void){
+//        guard let filter = filters.first else{
+//            completion([])
+//            return
+//        }
+        let query = "\(field) = \(min) - \(max)g"
+//        guard !filters.isEmpty else{
+        guard let url = URL(string: "https://keto-diet.p.rapidapi.com/?\(query)") else {
             completion([])
             return
         }
-        let field = filter.category.apiField
-        let query = "\(field) = \(filter.min)-\(filter.max)g"
+//        let field = filter.category.apiField
+//        let query = "\(field) = \(filter.min)-\(filter.max)g"
+//        let queryItems = filters.map { filter in
+//            "\(filter.category.apiField) = \(filter.min) - \(filter.max)g"
+//        }.joined(separator: "&")
         
-        guard let url = URL(string: "https://keto-diet.p.rapidapi.com/?\(query)") else{
-            completion([])
-            return
-        }
-        
+//        guard let url = URL(string: "https://keto-diet.p.rapidapi.com/?\(queryItems)") else{
+//            completion([])
+//            return
+//        }
+//        
         var request = URLRequest(url:url)
         request.httpMethod = "GET"
         request.setValue("43bc551287msh3b900558597b0c0p1d9df2jsnef549a6444c2", forHTTPHeaderField: "X-Rapidapi-Key")
