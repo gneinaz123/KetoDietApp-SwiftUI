@@ -5,11 +5,16 @@
 //  Created by user271428 on 5/3/25.
 //
 import SwiftUI
+import CoreData
 
 struct ViewRecipe: View {
     let recipe: RecipeDetails
+    @State private var isSaved: Bool = false
+    @State private var isDone: Bool = false
+    @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
+        
         GeometryReader { geometry in
             ZStack(alignment: .top) {
                 if let imageURLString = recipe.image,
@@ -80,18 +85,57 @@ struct ViewRecipe: View {
                                     .font(.body)
                             }
                         }
+                        
+                            
+                        
                     }
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.white.opacity(0.85))
                     .cornerRadius(12)
                     .padding()
+                    RecipeActionButtons(
+                                           isSaved: $isSaved,
+                                           isDone: $isDone,
+                                           recipe: recipe,
+                                           viewContext: viewContext
+                                       )
+
                 }
             }
         }
         .navigationTitle("Recipe Details")
         .navigationBarTitleDisplayMode(.inline)
     }
-    
+    private func saveToRecent(_ recipe: RecipeDetails) {
+        let newRecipe = RecentRecipe(context: viewContext)
+        newRecipe.id = Int64(recipe.id)
+        newRecipe.title = recipe.recipe
+        newRecipe.image = recipe.image
+        
+        do {
+            try viewContext.save()
+            print("Saved to Recent Recipe")
+        } catch{
+            print("Failed to save recent recipe: \(error)")
+        }
+    }
+    private func saveToConsume(_ recipe: RecipeDetails){
+        let consumed = ConsumedRecipe(context: viewContext)
+        consumed.id = Int64(recipe.id)
+        consumed.title = recipe.recipe
+        consumed.carbs = recipe.carbohydrates_in_grams ?? 0
+        consumed.calories = Int64(recipe.calories ?? 0)
+        consumed.protein = recipe.protein_in_grams ?? 0
+        consumed.fat = recipe.fat_in_grams ?? 0
+        consumed.carbs = recipe.carbohydrates_in_grams ?? 0
+        
+        do {
+            try viewContext.save()
+            print("Saved to consumed Recipe")
+        }catch{
+            print("Failed to save consued recipe: \(error)")
+        }
+    }
     
 }

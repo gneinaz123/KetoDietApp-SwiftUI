@@ -16,6 +16,11 @@
 			path = "KetoDietApp-SwiftUI";
 			sourceTree = "<group>";
 		};
+		BE887B622DC7C4EB00B52D7D /* CoreData */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 		BE18CCA52DC4938C00306827 = {
 			isa = PBXGroup;
 			children = (
+				BE887B622DC7C4EB00B52D7D /* CoreData */,
 				BE18CCB02DC4938C00306827 /* KetoDietApp-SwiftUI */,
 				BE18CCAF2DC4938C00306827 /* Products */,
 			);
@@ -62,6 +68,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				BE18CCB02DC4938C00306827 /* KetoDietApp-SwiftUI */,
+				BE887B622DC7C4EB00B52D7D /* CoreData */,
 			);
 			name = "KetoDietApp-SwiftUI";
 			packageProductDependencies = (
