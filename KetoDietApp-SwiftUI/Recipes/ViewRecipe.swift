@@ -12,27 +12,27 @@ struct ViewRecipe: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            if let imageURLString = recipe.image, let url = URL(string: imageURLString){
-                AsyncImage(url: url) { phase in
-                    switch phase{
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .blur(radius: 10)
-                            .opacity(0.3)
-                            .ignoresSafeArea()
-                    case .failure(_):
-                        Color.gray.opacity(0.3).ignoresSafeArea()
-                    case .empty:
-                        Color.gray.opacity(0.1).ignoresSafeArea()
-                    @unknown default:
-                        EmptyView()
-                    }
-                    
-                    
-                }
-            }
+//            if let imageURLString = recipe.image, let url = URL(string: imageURLString){
+//                AsyncImage(url: url) { phase in
+//                    switch phase{
+//                    case .success(let image):
+//                        image
+//                            .resizable()
+//                            .scaledToFill()
+//                            .blur(radius: 10)
+//                            .opacity(0.3)
+//                            .ignoresSafeArea()
+//                    case .failure(_):
+//                        Color.gray.opacity(0.3).ignoresSafeArea()
+//                    case .empty:
+//                        Color.gray.opacity(0.1).ignoresSafeArea()
+//                    @unknown default:
+//                        EmptyView()
+//                    }
+//                    
+//                    
+//                }
+//            }
             ScrollView{
                 VStack(alignment: .leading, spacing: 16) {
                     
