@@ -10,6 +10,7 @@ import SwiftUI
 
 class NutritionalFilterViewModel: ObservableObject {
     @Published var selectedCategory: NutrientCategory = .protein
+    @Published var selectedMealCategory: MealCategory = .breakfast
     @Published var minAmount: String = ""
     @Published var maxAmount: String = ""
     @Published var filters : [Filter] = []
@@ -42,6 +43,7 @@ class NutritionalFilterViewModel: ObservableObject {
 //            self?.isLoading = false
 //        }
         guard let primaryFilter = filters.first else { return }
+        
         APIService.shared.fetchRecipes(for: primaryFilter.category.apiField, min: primaryFilter.min, max: primaryFilter.max){ [weak self] fetched in
             guard let self = self else { return }
             
