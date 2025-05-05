@@ -10,10 +10,14 @@ import SwiftUI
 @main
 struct KetoDietApp_SwiftUIApp: App {
     let persistenceController = PersistenceController.shared
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
+        var body: some Scene {
+            WindowGroup {
+                        ContentView()
+                            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                            .onAppear {
+                                print("Passed context to ContentView: \(persistenceController.container.viewContext)")
+                            }
+                    }
         }
-    }
 }
