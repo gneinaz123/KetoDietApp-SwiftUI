@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NutritionalFilterView: View {
-    @StateObject private var viewModel = NutritionalFilterViewModel()
+    @EnvironmentObject var viewModel: NutritionalFilterViewModel
+
     var body: some View {
         NavigationView{
             ScrollView{
@@ -130,8 +131,12 @@ struct NutritionalFilterView: View {
 struct NutritionalFilterView_Previews: PreviewProvider {
     static var previews: some View {
         NutritionalFilterView()
-            .environmentObject(NutritionalFilterViewModel()) // or a mock view model
+            .environmentObject(NutritionalFilterViewModel())
     }
 }
+
+
+
+
 
 
