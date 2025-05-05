@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
-
+import CoreData
 struct progressTrackerView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(
+         entity: Goal.entity(),
+         sortDescriptors: [NSSortDescriptor(keyPath: \Goal.id, ascending: false)],
+         animation: .default
+     ) private var savedGoals: FetchedResults<Goal>
+     
     @State private var protein = ""
     @State private var fat = ""
     @State private var carbs = ""
@@ -35,30 +43,76 @@ struct progressTrackerView: View {
             
                 
                 Button(action: {
-                    // Save logic here
-                    print("Saved goals: P: \(protein), F: \(fat), C: \(carbs), Cal: \(calories)")
+                    saveGoal()
                 }) {
                     Text("Save")
                         .foregroundColor(.white)
                         .padding(10)
                         .frame(maxWidth: 100)
-                       // .background(Color.blue)
-                        .background(Color(red: 0.196, green: 0.290, blue: 0.659))                        .clipShape(Capsule())
-                }.padding(.top,10 )
+                        .background(Color(red: 0.196, green: 0.290, blue: 0.659))
+                        .clipShape(Capsule())
+                }.padding(.top, 10)
+
                     
             }.padding(10)
-            BlueBoxText(text: "Progress So far").padding(.top,20)
+            BlueBoxText(text: "Progress So far").padding(.vertical,20)
             
+         
+            if let latestGoal = savedGoals.first {
+                // Replace current values with real consumption logic when ready
+                NutrientProgressRow(label: "Protein", current: 60, goal: latestGoal.protein, unit: "g")
+                NutrientProgressRow(label: "Fat", current: 45, goal: latestGoal.fat, unit: "g")
+                NutrientProgressRow(label: "Carbs", current: 130, goal: latestGoal.carbohydrate, unit: "g")
+                NutrientProgressRow(label: "Calories", current: 1500, goal: latestGoal.calories, unit: "kcal")
+            } else {
+                Text("No saved goals yet.")
+                    .foregroundColor(.gray)
+                    .padding()
+            }
+
+           // .padding()
+            
+            
+            
+            
+            Spacer()
+        }
+       // .padding()
+        .background(Color.gray.opacity(0.1))
+    }
+    
+    private func saveGoal() {
+        let newGoal = Goal(context: viewContext)
+        newGoal.id = UUID()
+        newGoal.protein = Double(protein) ?? 0.0
+        newGoal.fat = Double(fat) ?? 0.0
+        newGoal.carbohydrate = Double(carbs) ?? 0.0
+        newGoal.calories = Double(calories) ?? 0.0
+
+        do {
+            try viewContext.save()
+            print("Saved successfully.")
+        } catch {
+            print("Failed to save goal: \(error.localizedDescription)")
+        }
+    }
+    
+    struct NutrientProgressRow: View {
+        var label: String
+        var current: Double
+        var goal: Double
+        var unit: String
+
+        var body: some View {
+            let safeCurrent = min(current, goal)
+
             HStack {
-                // Progress bar
-                ProgressView(value: 20){
-                    // Percentage label
-                    Text("Calories: 1500 / 2000 kcal")
-                } .progressViewStyle(LinearProgressViewStyle(tint: Color(red: 0.196, green: 0.290, blue: 0.659)))
-                    .frame(height: 20)
+                ProgressView(value: safeCurrent, total: goal) {
+                    Text("\(label): \(Int(current)) / \(Int(goal)) \(unit)") .foregroundColor(Color(red: 0.196, green: 0.290, blue: 0.659))                }
+                .progressViewStyle(LinearProgressViewStyle(tint: Color(red: 0.196, green: 0.290, blue: 0.659)))
+                .frame(height: 20)
                 
-                // Percentage label
-                Text("\(Int(1 * 100))%")
+                Text("\(Int((current / max(goal, 1)) * 100))%") // Avoid division by zero
                     .font(.subheadline)
                     .padding(3)
                     .frame(width: 50, alignment: .trailing)
@@ -69,16 +123,9 @@ struct progressTrackerView: View {
                             .stroke(Color.gray, lineWidth: 1)
                     )
             }
-            .padding(10)
-            .padding()
-            
-            
-            
-            
-            Spacer()
+            .padding(.vertical, 10)
+            .padding(.horizontal, 30)
         }
-       // .padding()
-        .background(Color.gray.opacity(0.1))
     }
 
     struct GoalInputField: View {
@@ -144,3 +191,4 @@ struct progressTrackerView: View {
 #Preview {
     progressTrackerView()
 }
+
