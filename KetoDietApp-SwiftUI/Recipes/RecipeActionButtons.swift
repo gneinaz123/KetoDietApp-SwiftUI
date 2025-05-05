@@ -38,7 +38,7 @@ struct RecipeActionButtons: View {
             Button(action: {
                 isDone.toggle()
                 if isDone {
-                    saveToConsumed(recipe)
+                    saveToConsume(recipe)
                 }
             }) {
                 Text("Done")
@@ -57,15 +57,38 @@ struct RecipeActionButtons: View {
         .padding([.horizontal, .bottom])
     }
 
-    // Dummy CoreData saving functions — update these as needed
     private func saveToRecent(_ recipe: RecipeDetails) {
-        // Add CoreData saving logic here
-        print("Recipe saved to recent.")
+        let newRecentRecipe = RecentRecipe(context: viewContext)
+        newRecentRecipe.title = recipe.recipe
+        newRecentRecipe.category = recipe.category.category
+        newRecentRecipe.calories = Int64(recipe.calories ?? 0)
+        newRecentRecipe.protein = Double(recipe.protein_in_grams ?? 0)
+        newRecentRecipe.fat = Double(recipe.fat_in_grams ?? 0)
+        //newRecentRecipe. = Double(recipe.carbohydrates_in_grams ?? 0)
+        
+        do {
+            try viewContext.save()
+            print("Saved to Recent Recipe")
+        } catch{
+            print("Failed to save recent recipe: \(error)")
+        }
     }
-
-    private func saveToConsumed(_ recipe: RecipeDetails) {
-        // Add CoreData saving logic here
-        print("Recipe saved as consumed.")
+    private func saveToConsume(_ recipe: RecipeDetails){
+        let consumed = ConsumedRecipe(context: viewContext)
+        consumed.id = Int64(recipe.id)
+        consumed.title = recipe.recipe
+        consumed.carbs = recipe.carbohydrates_in_grams ?? 0
+        consumed.calories = Int64(recipe.calories ?? 0)
+        consumed.protein = recipe.protein_in_grams ?? 0
+        consumed.fat = recipe.fat_in_grams ?? 0
+        consumed.carbs = recipe.carbohydrates_in_grams ?? 0
+        
+        do {
+            try viewContext.save()
+            print("Saved to consumed Recipe")
+        }catch{
+            print("Failed to save consued recipe: \(error)")
+        }
     }
 }
 

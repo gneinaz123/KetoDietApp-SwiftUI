@@ -86,7 +86,7 @@ struct ViewRecipe: View {
                             }
                         }
                         
-                            
+                        
                         
                     }
                     .padding()
@@ -95,47 +95,17 @@ struct ViewRecipe: View {
                     .cornerRadius(12)
                     .padding()
                     RecipeActionButtons(
-                                           isSaved: $isSaved,
-                                           isDone: $isDone,
-                                           recipe: recipe,
-                                           viewContext: viewContext
-                                       )
-
+                        isSaved: $isSaved,
+                        isDone: $isDone,
+                        recipe: recipe,
+                        viewContext: viewContext
+                    )
+                    
                 }
             }
         }
         .navigationTitle("Recipe Details")
         .navigationBarTitleDisplayMode(.inline)
-    }
-    private func saveToRecent(_ recipe: RecipeDetails) {
-        let newRecipe = RecentRecipe(context: viewContext)
-        newRecipe.id = Int64(recipe.id)
-        newRecipe.title = recipe.recipe
-        newRecipe.image = recipe.image
-        
-        do {
-            try viewContext.save()
-            print("Saved to Recent Recipe")
-        } catch{
-            print("Failed to save recent recipe: \(error)")
-        }
-    }
-    private func saveToConsume(_ recipe: RecipeDetails){
-        let consumed = ConsumedRecipe(context: viewContext)
-        consumed.id = Int64(recipe.id)
-        consumed.title = recipe.recipe
-        consumed.carbs = recipe.carbohydrates_in_grams ?? 0
-        consumed.calories = Int64(recipe.calories ?? 0)
-        consumed.protein = recipe.protein_in_grams ?? 0
-        consumed.fat = recipe.fat_in_grams ?? 0
-        consumed.carbs = recipe.carbohydrates_in_grams ?? 0
-        
-        do {
-            try viewContext.save()
-            print("Saved to consumed Recipe")
-        }catch{
-            print("Failed to save consued recipe: \(error)")
-        }
     }
     
 }
