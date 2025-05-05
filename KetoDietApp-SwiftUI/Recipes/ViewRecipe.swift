@@ -95,12 +95,8 @@ struct ViewRecipe: View {
                     .cornerRadius(12)
                     .padding()
                     
-                    RecipeActionButtons(
-                        isSaved: $isSaved,
-                        isDone: $isDone,
-                        recipe: recipe,
-                        viewContext: viewContext
-                    )
+                    RecipeActionButtons(isSaved: $isSaved, isDone: $isDone, recipe: recipe, viewContext: PersistenceController.shared.container.viewContext)
+
                     
                 }
             }

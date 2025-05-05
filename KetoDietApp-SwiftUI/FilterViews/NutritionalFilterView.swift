@@ -85,6 +85,7 @@ struct NutritionalFilterView: View {
                                 //                        }
                                 //                        .padding(.top)
                             }
+                        
                         Spacer()
                         HStack{
                             Spacer()
@@ -126,7 +127,6 @@ struct NutritionalFilterView: View {
             
         }
     }
-
 
 struct NutritionalFilterView_Previews: PreviewProvider {
     static var previews: some View {
