@@ -94,6 +94,7 @@ struct ViewRecipe: View {
                     .background(Color.white.opacity(0.85))
                     .cornerRadius(12)
                     .padding()
+                    
                     RecipeActionButtons(
                         isSaved: $isSaved,
                         isDone: $isDone,

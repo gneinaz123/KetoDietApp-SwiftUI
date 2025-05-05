@@ -59,13 +59,32 @@ struct RecipeActionButtons: View {
 
     private func saveToRecent(_ recipe: RecipeDetails) {
         let newRecentRecipe = RecentRecipe(context: viewContext)
-        newRecentRecipe.title = recipe.recipe
-        newRecentRecipe.category = recipe.category.category
-        newRecentRecipe.calories = Int64(recipe.calories ?? 0)
-        newRecentRecipe.protein = Double(recipe.protein_in_grams ?? 0)
-        newRecentRecipe.fat = Double(recipe.fat_in_grams ?? 0)
-        //newRecentRecipe. = Double(recipe.carbohydrates_in_grams ?? 0)
-        
+//        newRecentRecipe.id = UUID()
+//        newRecentRecipe.title = recipe.recipe
+//        newRecentRecipe.category = recipe.category.category
+//        newRecentRecipe.calories = Int64(recipe.calories ?? 0)
+//        newRecentRecipe.protein = Double(recipe.protein_in_grams ?? 0)
+//        newRecentRecipe.fat = Double(recipe.fat_in_grams ?? 0)
+//        newRecentRecipe.carbs = Double(recipe.carbohydrates_in_grams ?? 0)
+        newRecentRecipe.id = UUID()
+        newRecentRecipe.title = "Test Recipe"
+        newRecentRecipe.category = "Test Category"
+        newRecentRecipe.calories = 100
+        newRecentRecipe.protein = 10
+        newRecentRecipe.fat = 10
+        newRecentRecipe.carbs = 5
+        NSLog("excuting")
+        print("viewContext: \(viewContext)")
+        print("ID: \(newRecentRecipe.id?.uuidString ?? "nil")")
+            print("Title: \(newRecentRecipe.title ?? "nil")")
+        print("category: \(newRecentRecipe.category ?? "nil")")
+//            print("Image: \(newRecipe.image ?? "nil")")
+            print("Calories: \(newRecentRecipe.calories)")
+            print("Protein: \(newRecentRecipe.protein)")
+            print("Fat: \(newRecentRecipe.fat)")
+            print("Carbs: \(newRecentRecipe.carbs)")
+            
+
         do {
             try viewContext.save()
             print("Saved to Recent Recipe")
