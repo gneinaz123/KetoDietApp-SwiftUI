@@ -57,7 +57,7 @@ struct HomeView: View {
             
             
                 // Today's Recipe Section
-            BlueBoxText(text: "Today's Recipe").padding(.vertical,20)
+            BlueBoxText(text: "Today's Recipe").padding(.top,20).padding(.bottom,10)
                           
             VStack {
                         CardView(text: "Sample Card 1", imageName: "play")
