@@ -105,9 +105,11 @@ struct ViewRecipe: View {
                     
                 }
             }
+            
         }
         .navigationTitle("Recipe Details")
         .navigationBarTitleDisplayMode(.inline)
+        
     }
     
 }

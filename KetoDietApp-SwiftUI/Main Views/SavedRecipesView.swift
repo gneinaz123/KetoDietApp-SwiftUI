@@ -15,7 +15,7 @@ struct SavedRecipesView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \RecentRecipe.title, ascending: true)]
     ) var RecentRecipes: FetchedResults<RecentRecipe>
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ScrollView{
                 LazyVStack(spacing: 16){
                     ForEach(RecentRecipes){ recipe in

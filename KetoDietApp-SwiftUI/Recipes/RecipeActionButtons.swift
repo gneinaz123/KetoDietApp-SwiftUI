@@ -56,6 +56,7 @@ struct RecipeActionButtons: View {
             }
         }
         .padding([.horizontal, .bottom])
+        
     }
 
 //    private func saveToRecent(_ recipe: RecipeDetails) {
@@ -102,12 +103,18 @@ struct RecipeActionButtons: View {
     private func saveToRecent(_ recipe: RecipeDetails) {
         print("Starting saveToRecent...")
 
-        if let persistentStoreCoordinator = viewContext.persistentStoreCoordinator {
-                print("Persistent Store Coordinator is available: \(persistentStoreCoordinator)")
-            } else {
-                print("Persistent Store Coordinator is not available")
-                return
-            }
+//        if let persistentStoreCoordinator = viewContext.persistentStoreCoordinator {
+//                print("Persistent Store Coordinator is available: \(persistentStoreCoordinator)")
+//            } else {
+//                print("Persistent Store Coordinator is not available")
+//                return
+//            }
+        guard let persistentStoreCoordinator = viewContext.persistentStoreCoordinator else {
+            print("Persistent Store Coordinator is not available")
+            return
+        }
+        print("Persistent Store Coordinator is available: \(persistentStoreCoordinator)")
+
 
         if let entityDescriptions = viewContext.persistentStoreCoordinator?.managedObjectModel.entities {
                 print("Entities in model:")
@@ -126,44 +133,49 @@ struct RecipeActionButtons: View {
 //            print("Unable to access model or entity description for RecentRecipe")
 //            return
 //        }
-
-        let newRecentRecipe = RecentRecipe(context: viewContext)
-
-        let generatedUUID = UUID()
-        newRecentRecipe.id = generatedUUID
-        newRecentRecipe.title = recipe.recipe
-        newRecentRecipe.category = recipe.category.category
-        newRecentRecipe.calories = Int64(recipe.calories ?? 0)
-        newRecentRecipe.protein = Double(recipe.protein_in_grams ?? 0)
-        newRecentRecipe.fat = Double(recipe.fat_in_grams ?? 0)
-        newRecentRecipe.carbs = Double(recipe.carbohydrates_in_grams ?? 0)
-
-        print("About to save new recipe to context:")
-        print("ID: \(generatedUUID)")
-        print("Title: \(newRecentRecipe.title ?? "nil")")
-        print("Category: \(newRecentRecipe.category ?? "nil")")
-        print("Calories: \(newRecentRecipe.calories)")
-        print("Protein: \(newRecentRecipe.protein)")
-        print("Fat: \(newRecentRecipe.fat)")
-        print("Carbs: \(newRecentRecipe.carbs)")
-        PersistenceController.shared.saveContext()
-        do {
-            try viewContext.save()
-            print(" Successfully saved to Core Data")
-            let fetchRequest: NSFetchRequest<RecentRecipe> = RecentRecipe.fetchRequest()
-                    let recipes = try viewContext.fetch(fetchRequest)
-                    print("Fetched recipes count: \(recipes.count)")
-        } catch let error as NSError {
-            // More detailed error information
-            print("Core Data Save Error")
-            print("Domain: \(error.domain)")
-            print("Code: \(error.code)")
-            print("Description: \(error.localizedDescription)")
-            print("User Info: \(error.userInfo)")
-
-            // Let's also print the persistent store details
-            if let store = viewContext.persistentStoreCoordinator?.persistentStores.first {
-                print("Persistent Store: \(store)")
+        DispatchQueue.main.async {
+            let newRecentRecipe = RecentRecipe(context: viewContext)
+//            let newRecentRecipe = RecentRecipe(context: PersistenceController.shared.container.viewContext)
+            let generatedUUID = UUID()
+            newRecentRecipe.id = generatedUUID
+            newRecentRecipe.title = recipe.recipe
+            newRecentRecipe.category = recipe.category.category
+            newRecentRecipe.calories = Int64(recipe.calories ?? 0)
+            newRecentRecipe.protein = Double(recipe.protein_in_grams ?? 0)
+            newRecentRecipe.fat = Double(recipe.fat_in_grams ?? 0)
+            newRecentRecipe.carbs = Double(recipe.carbohydrates_in_grams ?? 0)
+            
+            print("About to save new recipe to context:")
+            print("ID: \(generatedUUID)")
+            print("Title: \(newRecentRecipe.title ?? "nil")")
+            print("Category: \(newRecentRecipe.category ?? "nil")")
+            print("Calories: \(newRecentRecipe.calories)")
+            print("Protein: \(newRecentRecipe.protein)")
+            print("Fat: \(newRecentRecipe.fat)")
+            print("Carbs: \(newRecentRecipe.carbs)")
+//                    PersistenceController.shared.saveContext()
+            print("viewContext before save: \(viewContext)")
+            do {
+//                PersistenceController.shared.saveContext()
+                try viewContext.save()
+                viewContext.refreshAllObjects()
+//                viewContext.processPendingChanges()
+                print(" Successfully saved to Core Data")
+                let fetchRequest: NSFetchRequest<RecentRecipe> = RecentRecipe.fetchRequest()
+                let recipes = try viewContext.fetch(fetchRequest)
+                print("Fetched recipes count: \(recipes.count)")
+            } catch let error as NSError {
+                // More detailed error information
+                print("Core Data Save Error")
+                print("Domain: \(error.domain)")
+                print("Code: \(error.code)")
+                print("Description: \(error.localizedDescription)")
+                print("User Info: \(error.userInfo)")
+                
+                // Let's also print the persistent store details
+                if let store = viewContext.persistentStoreCoordinator?.persistentStores.first {
+                    print("Persistent Store: \(store)")
+                }
             }
         }
     }
