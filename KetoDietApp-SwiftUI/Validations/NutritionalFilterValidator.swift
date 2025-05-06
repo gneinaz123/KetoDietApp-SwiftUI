@@ -17,6 +17,10 @@ struct NutritionalFilterValidator {
             return (nil, nil, "Only numbers are allowed.")
         }
 
+        guard min >= 0, max >= 0 else {
+            return (nil, nil, "Negative values are not allowed.")
+        }
+        
         guard min <= max else {
             return (nil, nil, "Min must be less than or equal to Max.")
         }
