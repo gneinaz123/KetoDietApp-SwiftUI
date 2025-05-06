@@ -117,14 +117,14 @@ struct RecipeActionButtons: View {
                 print("Unable to access the persistent store coordinator or managed object model.")
             }
         // Ensure that the viewContext is properly injected
-        assert(viewContext != nil, "viewContext is nil! Make sure it's injected properly.")
-        
-        // Confirm that the persistent container is loaded
-        guard let modelName = viewContext.persistentStoreCoordinator?.managedObjectModel,
-              let entities = modelName.entitiesByName["RecentRecipe"] else {
-            print("Unable to access model or entity description for RecentRecipe")
-            return
-        }
+//        assert(viewContext != nil, "viewContext is nil! Make sure it's injected properly.")
+//        
+//        // Confirm that the persistent container is loaded
+//        guard let modelName = viewContext.persistentStoreCoordinator?.managedObjectModel,
+//              let entities = modelName.entitiesByName["RecentRecipe"] else {
+//            print("Unable to access model or entity description for RecentRecipe")
+//            return
+//        }
 
         let newRecentRecipe = RecentRecipe(context: viewContext)
 
