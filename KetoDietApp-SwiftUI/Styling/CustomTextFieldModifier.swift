@@ -27,6 +27,7 @@ struct CustomTextFieldModifier: ViewModifier {
                         .padding(.leading, 4)
                 }
             }
+        
     }
 }
 

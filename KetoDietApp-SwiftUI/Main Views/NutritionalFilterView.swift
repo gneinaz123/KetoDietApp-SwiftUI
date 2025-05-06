@@ -46,9 +46,11 @@ struct NutritionalFilterView: View {
                             TextField("Min (g)", text: $viewModel.minAmount)
                                     .keyboardType(.numberPad)
                                     .customTextField(placeholder: "Min (g)", text: $viewModel.minAmount)
+                                    .onChange(of: viewModel.minAmount) { _ in viewModel.errorMessage = nil }
                                 TextField("Max (g)", text: $viewModel.maxAmount)
                                     .keyboardType(.numberPad)
                                     .customTextField(placeholder: "Max (g)", text: $viewModel.maxAmount)
+                                    .onChange(of: viewModel.maxAmount) { _ in viewModel.errorMessage = nil }
 
                             Button("Add") {
                                 viewModel.addFilter()
@@ -61,6 +63,14 @@ struct NutritionalFilterView: View {
                             
                         }
                         .padding(.horizontal)
+                        
+                        if let error = viewModel.errorMessage {
+                            Text(error)
+                                .foregroundColor(.red)
+                                .font(.footnote)
+                                .padding(.horizontal)
+                                .multilineTextAlignment(.center)
+                        }
 
                         // Meal Category Picker
                         HStack {

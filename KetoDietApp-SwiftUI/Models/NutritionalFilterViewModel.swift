@@ -25,13 +25,23 @@ class NutritionalFilterViewModel: ObservableObject {
         self.service = service
     }
     
-    func addFilter(){
-        guard let min = Int(minAmount), let max = Int(maxAmount) else{ return }
-        let newFilter = Filter(category: selectedCategory, min: min, max: max)
-        filters.append(newFilter)
-        minAmount = ""
-        maxAmount = ""
+    func addFilter() {
+        let validation = NutritionalFilterValidator.validate(minText: minAmount, maxText: maxAmount)
+        
+        if let error = validation.error {
+            self.errorMessage = error
+            return
+        }
+
+        if let min = validation.min, let max = validation.max {
+            let newFilter = Filter(category: selectedCategory, min: min, max: max)
+            filters.append(newFilter)
+            minAmount = ""
+            maxAmount = ""
+            errorMessage = nil
+        }
     }
+
     
     func removeFilters(_ filter: Filter){
         filters.removeAll {$0.id == filter.id}
