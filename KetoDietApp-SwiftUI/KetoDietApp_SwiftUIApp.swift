@@ -17,6 +17,8 @@ struct KetoDietApp_SwiftUIApp: App {
                             .environment(\.managedObjectContext, persistenceController.container.viewContext)
                             .onAppear {
                                 print("Passed context to ContentView: \(persistenceController.container.viewContext)")
+                                print("Using store: \(PersistenceController.shared.container.persistentStoreDescriptions.first?.url?.path ?? "Unknown")")
+
                             }
                     }
         }

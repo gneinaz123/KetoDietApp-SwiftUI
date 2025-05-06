@@ -13,6 +13,7 @@ struct RecipeActionButtons: View {
     @Binding var isDone: Bool
     let recipe: RecipeDetails
     let viewContext: NSManagedObjectContext
+//    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         HStack(spacing: 20) {
@@ -145,10 +146,13 @@ struct RecipeActionButtons: View {
         print("Protein: \(newRecentRecipe.protein)")
         print("Fat: \(newRecentRecipe.fat)")
         print("Carbs: \(newRecentRecipe.carbs)")
-
+        PersistenceController.shared.saveContext()
         do {
             try viewContext.save()
             print(" Successfully saved to Core Data")
+            let fetchRequest: NSFetchRequest<RecentRecipe> = RecentRecipe.fetchRequest()
+                    let recipes = try viewContext.fetch(fetchRequest)
+                    print("Fetched recipes count: \(recipes.count)")
         } catch let error as NSError {
             // More detailed error information
             print("Core Data Save Error")

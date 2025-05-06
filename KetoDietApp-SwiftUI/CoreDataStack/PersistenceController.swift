@@ -82,7 +82,7 @@ final class PersistenceController {
 
         // DEBUG: Print store URL
         if let storeURL = description.url {
-            print("🗂 Core Data store location: \(storeURL.path)")
+            print("Core Data store location: \(storeURL.path)")
         }
 
         // Clear store if migration fails
@@ -115,7 +115,8 @@ final class PersistenceController {
                     fatalError("Unresolved error \(error), \(error.userInfo)")
                 }
             } else {
-                print("✅ Core Data loaded successfully.")
+                print("SQLite DB Path: \(storeDescription.url?.path ?? "Unknown path")")
+                print("Core Data loaded successfully.")
             }
         }
 
@@ -133,6 +134,18 @@ final class PersistenceController {
             }
         }
     }
+    // Save function for context
+        func saveContext() {
+            let context = container.viewContext
+            if context.hasChanges {
+                do {
+                    try context.save()
+                    print("Successfully saved to Core Data")
+                } catch {
+                    print("Failed to save context: \(error)")
+                }
+            }
+        }
 }
 
 
