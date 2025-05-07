@@ -10,18 +10,28 @@ struct NutritionalFilterView: View {
     @EnvironmentObject var viewModel: NutritionalFilterViewModel
 
     var body: some View {
+        
+      
+        
+        
+        
         NavigationStack {
             GeometryReader { geometry in
                 ScrollView {
+                    // Daily Target Section
+                    BlueBoxText(text: "Customize Your Nutritional Goals").padding(.bottom,30).padding(.top,10)
+                    
                     VStack(alignment: .center, spacing: 20) {
                         
-                        Text("Customize Your Nutritional Goals")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .bold()
-                            .multilineTextAlignment(.center)
-                            .padding(.top)
-                            .foregroundColor(.blue)
+                        
+                        
+                      //  Text("Customize Your Nutritional Goals")
+                       //     .font(.title2)
+                       //     .fontWeight(.bold)
+                       //     .bold()
+                      //      .multilineTextAlignment(.center)
+                         //   .padding(.top)
+                         //   .foregroundColor(.blue)
 
                         // Nutrient Category Picker
                         StyledDropdown(selection:$viewModel.selectedCategory) {

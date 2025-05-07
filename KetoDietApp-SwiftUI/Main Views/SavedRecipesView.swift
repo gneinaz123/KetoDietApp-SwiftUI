@@ -21,16 +21,15 @@ struct SavedRecipesView: View {
                 .compactMap { $0.value.first }
         }
     var body: some View {
+        
+        // Daily Target Section
+        BlueBoxText(text: "Saved Recipes").padding(.bottom,30).padding(.top,10)
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 16) {
+                
                     
-                    Text("Saved Recipes")
-                        .font(.title)
-                        .foregroundColor(.blue)
-                        .frame(maxWidth: .infinity)
-                        .multilineTextAlignment(.center)
-                        .fontWeight(.bold)
+                   
                     ForEach(uniqueRecipes) { recipe in
                         SavedRecipeCard(recipe: recipe)
                     }
@@ -47,6 +46,49 @@ struct SavedRecipesView: View {
     }
     
 }
+struct BlueBoxText: View {
+    let text: String
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "checkmark")
+                .foregroundColor(.white)
+                .font(.system(size: 16, weight: .regular))
+
+            Text(text)
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundColor(.white)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 14)
+        .background(Color(red: 0.196, green: 0.290, blue: 0.659))
+        .clipShape(RightCapsuleShape())
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+struct RightCapsuleShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        let radius = rect.height / 2
+
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.minY))
+        path.addArc(center: CGPoint(x: rect.maxX - radius, y: rect.midY),
+                    radius: radius,
+                    startAngle: Angle(degrees: -90),
+                    endAngle: Angle(degrees: 90),
+                    clockwise: false)
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.closeSubpath()
+
+        return path
+    }
+}
+
+
+
 #Preview {
     SavedRecipesView()
         .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
