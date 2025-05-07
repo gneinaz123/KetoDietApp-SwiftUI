@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		F0FDCA702DCAC635001D92EC /* PBXContainerItemProxy */ = {
+		BEE501C32DCBC84700896AAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BE18CCA62DC4938C00306827 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BE18CCAD2DC4938C00306827;
 			remoteInfo = "KetoDietApp-SwiftUI";
 		};
-		F0FDCA7D2DCAC64E001D92EC /* PBXContainerItemProxy */ = {
+		BEE501D62DCBD0FE00896AAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BE18CCA62DC4938C00306827 /* Project object */;
 			proxyType = 1;
@@ -25,37 +25,24 @@
 
 /* Begin PBXFileReference section */
 		BE18CCAE2DC4938C00306827 /* KetoDietApp-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KetoDietApp-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0FDCA6A2DCAC635001D92EC /* KetoDietApp-SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KetoDietApp-SwiftUIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0FDCA792DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KetoDietApp-SwiftUIUnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE501BF2DCBC84700896AAC /* KetoDietApp-SwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KetoDietApp-SwiftUnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE501D02DCBD0FE00896AAC /* KetoDietApp-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KetoDietApp-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F06F06832DC80B7800CA8AF4 /* Exceptions for "KetoDietApp-SwiftUI" folder in "KetoDietApp-SwiftUI" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = BE18CCAD2DC4938C00306827 /* KetoDietApp-SwiftUI */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BE18CCB02DC4938C00306827 /* KetoDietApp-SwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				F06F06832DC80B7800CA8AF4 /* Exceptions for "KetoDietApp-SwiftUI" folder in "KetoDietApp-SwiftUI" target */,
-			);
 			path = "KetoDietApp-SwiftUI";
 			sourceTree = "<group>";
 		};
-		F0FDCA6B2DCAC635001D92EC /* KetoDietApp-SwiftUIUITests */ = {
+		BEE501C02DCBC84700896AAC /* KetoDietApp-SwiftUnitTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "KetoDietApp-SwiftUIUITests";
+			path = "KetoDietApp-SwiftUnitTests";
 			sourceTree = "<group>";
 		};
-		F0FDCA7A2DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests */ = {
+		BEE501D12DCBD0FE00896AAC /* KetoDietApp-SwiftUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "KetoDietApp-SwiftUIUnitTests";
+			path = "KetoDietApp-SwiftUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -68,14 +55,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0FDCA672DCAC635001D92EC /* Frameworks */ = {
+		BEE501BC2DCBC84700896AAC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0FDCA762DCAC64E001D92EC /* Frameworks */ = {
+		BEE501CD2DCBD0FE00896AAC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,8 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				BE18CCB02DC4938C00306827 /* KetoDietApp-SwiftUI */,
-				F0FDCA6B2DCAC635001D92EC /* KetoDietApp-SwiftUIUITests */,
-				F0FDCA7A2DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests */,
+				BEE501C02DCBC84700896AAC /* KetoDietApp-SwiftUnitTests */,
+				BEE501D12DCBD0FE00896AAC /* KetoDietApp-SwiftUITests */,
 				BE18CCAF2DC4938C00306827 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,8 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				BE18CCAE2DC4938C00306827 /* KetoDietApp-SwiftUI.app */,
-				F0FDCA6A2DCAC635001D92EC /* KetoDietApp-SwiftUIUITests.xctest */,
-				F0FDCA792DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests.xctest */,
+				BEE501BF2DCBC84700896AAC /* KetoDietApp-SwiftUnitTests.xctest */,
+				BEE501D02DCBD0FE00896AAC /* KetoDietApp-SwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,51 +117,51 @@
 			productReference = BE18CCAE2DC4938C00306827 /* KetoDietApp-SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F0FDCA692DCAC635001D92EC /* KetoDietApp-SwiftUIUITests */ = {
+		BEE501BE2DCBC84700896AAC /* KetoDietApp-SwiftUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F0FDCA722DCAC635001D92EC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUIUITests" */;
+			buildConfigurationList = BEE501C72DCBC84700896AAC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUnitTests" */;
 			buildPhases = (
-				F0FDCA662DCAC635001D92EC /* Sources */,
-				F0FDCA672DCAC635001D92EC /* Frameworks */,
-				F0FDCA682DCAC635001D92EC /* Resources */,
+				BEE501BB2DCBC84700896AAC /* Sources */,
+				BEE501BC2DCBC84700896AAC /* Frameworks */,
+				BEE501BD2DCBC84700896AAC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F0FDCA712DCAC635001D92EC /* PBXTargetDependency */,
+				BEE501C42DCBC84700896AAC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				F0FDCA6B2DCAC635001D92EC /* KetoDietApp-SwiftUIUITests */,
+				BEE501C02DCBC84700896AAC /* KetoDietApp-SwiftUnitTests */,
 			);
-			name = "KetoDietApp-SwiftUIUITests";
+			name = "KetoDietApp-SwiftUnitTests";
 			packageProductDependencies = (
 			);
-			productName = "KetoDietApp-SwiftUIUITests";
-			productReference = F0FDCA6A2DCAC635001D92EC /* KetoDietApp-SwiftUIUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		F0FDCA782DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F0FDCA7F2DCAC64E001D92EC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUIUnitTests" */;
-			buildPhases = (
-				F0FDCA752DCAC64E001D92EC /* Sources */,
-				F0FDCA762DCAC64E001D92EC /* Frameworks */,
-				F0FDCA772DCAC64E001D92EC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F0FDCA7E2DCAC64E001D92EC /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				F0FDCA7A2DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests */,
-			);
-			name = "KetoDietApp-SwiftUIUnitTests";
-			packageProductDependencies = (
-			);
-			productName = "KetoDietApp-SwiftUIUnitTests";
-			productReference = F0FDCA792DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests.xctest */;
+			productName = "KetoDietApp-SwiftUnitTests";
+			productReference = BEE501BF2DCBC84700896AAC /* KetoDietApp-SwiftUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BEE501CF2DCBD0FE00896AAC /* KetoDietApp-SwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE501D82DCBD0FE00896AAC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUITests" */;
+			buildPhases = (
+				BEE501CC2DCBD0FE00896AAC /* Sources */,
+				BEE501CD2DCBD0FE00896AAC /* Frameworks */,
+				BEE501CE2DCBD0FE00896AAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEE501D72DCBD0FE00896AAC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BEE501D12DCBD0FE00896AAC /* KetoDietApp-SwiftUITests */,
+			);
+			name = "KetoDietApp-SwiftUITests";
+			packageProductDependencies = (
+			);
+			productName = "KetoDietApp-SwiftUITests";
+			productReference = BEE501D02DCBD0FE00896AAC /* KetoDietApp-SwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -189,11 +176,11 @@
 					BE18CCAD2DC4938C00306827 = {
 						CreatedOnToolsVersion = 16.3;
 					};
-					F0FDCA692DCAC635001D92EC = {
+					BEE501BE2DCBC84700896AAC = {
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = BE18CCAD2DC4938C00306827;
 					};
-					F0FDCA782DCAC64E001D92EC = {
+					BEE501CF2DCBD0FE00896AAC = {
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = BE18CCAD2DC4938C00306827;
 					};
@@ -214,8 +201,8 @@
 			projectRoot = "";
 			targets = (
 				BE18CCAD2DC4938C00306827 /* KetoDietApp-SwiftUI */,
-				F0FDCA692DCAC635001D92EC /* KetoDietApp-SwiftUIUITests */,
-				F0FDCA782DCAC64E001D92EC /* KetoDietApp-SwiftUIUnitTests */,
+				BEE501BE2DCBC84700896AAC /* KetoDietApp-SwiftUnitTests */,
+				BEE501CF2DCBD0FE00896AAC /* KetoDietApp-SwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -228,14 +215,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0FDCA682DCAC635001D92EC /* Resources */ = {
+		BEE501BD2DCBC84700896AAC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0FDCA772DCAC64E001D92EC /* Resources */ = {
+		BEE501CE2DCBD0FE00896AAC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,14 +239,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0FDCA662DCAC635001D92EC /* Sources */ = {
+		BEE501BB2DCBC84700896AAC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F0FDCA752DCAC64E001D92EC /* Sources */ = {
+		BEE501CC2DCBD0FE00896AAC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,15 +256,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F0FDCA712DCAC635001D92EC /* PBXTargetDependency */ = {
+		BEE501C42DCBC84700896AAC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BE18CCAD2DC4938C00306827 /* KetoDietApp-SwiftUI */;
-			targetProxy = F0FDCA702DCAC635001D92EC /* PBXContainerItemProxy */;
+			targetProxy = BEE501C32DCBC84700896AAC /* PBXContainerItemProxy */;
 		};
-		F0FDCA7E2DCAC64E001D92EC /* PBXTargetDependency */ = {
+		BEE501D72DCBD0FE00896AAC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BE18CCAD2DC4938C00306827 /* KetoDietApp-SwiftUI */;
-			targetProxy = F0FDCA7D2DCAC64E001D92EC /* PBXContainerItemProxy */;
+			targetProxy = BEE501D62DCBD0FE00896AAC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -410,9 +397,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "KetoDietApp-SwiftUI/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -437,9 +424,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "KetoDietApp-SwiftUI/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -455,69 +442,69 @@
 			};
 			name = Release;
 		};
-		F0FDCA732DCAC635001D92EC /* Debug */ = {
+		BEE501C52DCBC84700896AAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUIUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUnitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "KetoDietApp-SwiftUI";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KetoDietApp-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KetoDietApp-SwiftUI";
 			};
 			name = Debug;
 		};
-		F0FDCA742DCAC635001D92EC /* Release */ = {
+		BEE501C62DCBC84700896AAC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUIUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUnitTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "KetoDietApp-SwiftUI";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KetoDietApp-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KetoDietApp-SwiftUI";
 			};
 			name = Release;
 		};
-		F0FDCA802DCAC64E001D92EC /* Debug */ = {
+		BEE501D92DCBD0FE00896AAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUIUnitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KetoDietApp-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KetoDietApp-SwiftUI";
+				TEST_TARGET_NAME = "KetoDietApp-SwiftUI";
 			};
 			name = Debug;
 		};
-		F0FDCA812DCAC64E001D92EC /* Release */ = {
+		BEE501DA2DCBD0FE00896AAC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUIUnitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appfolks.KetoDietApp-SwiftUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KetoDietApp-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KetoDietApp-SwiftUI";
+				TEST_TARGET_NAME = "KetoDietApp-SwiftUI";
 			};
 			name = Release;
 		};
@@ -542,20 +529,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F0FDCA722DCAC635001D92EC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUIUITests" */ = {
+		BEE501C72DCBC84700896AAC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F0FDCA732DCAC635001D92EC /* Debug */,
-				F0FDCA742DCAC635001D92EC /* Release */,
+				BEE501C52DCBC84700896AAC /* Debug */,
+				BEE501C62DCBC84700896AAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F0FDCA7F2DCAC64E001D92EC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUIUnitTests" */ = {
+		BEE501D82DCBD0FE00896AAC /* Build configuration list for PBXNativeTarget "KetoDietApp-SwiftUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F0FDCA802DCAC64E001D92EC /* Debug */,
-				F0FDCA812DCAC64E001D92EC /* Release */,
+				BEE501D92DCBD0FE00896AAC /* Debug */,
+				BEE501DA2DCBD0FE00896AAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
