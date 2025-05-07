@@ -83,29 +83,53 @@ struct NutritionalFilterView: View {
 
                         // Active Filters
                         if !viewModel.filters.isEmpty {
-                            VStack(alignment: .leading, spacing: 10) {
+                            VStack(alignment: .leading, spacing: 14) {
                                 Text("Active Filters")
-                                    .font(.subheadline)
-                                    .bold()
-
-                                ForEach(viewModel.filters) { filter in
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal)
+                                
+                                ForEach($viewModel.filters, id: \.id) { $filter in
                                     HStack {
-                                        Toggle(isOn: .constant(true)) {
-                                            Text("\(filter.category.rawValue): \(filter.min) - \(filter.max)g")
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            Text(filter.category.rawValue)
+                                                .font(.body)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.accentColor)
+                                            
+                                            Text("Range: \(filter.min) - \(filter.max)g")
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
                                         }
-                                        .disabled(true)
-
+                                        
                                         Spacer()
+                                        
+                                        Toggle("", isOn: $filter.isEnabled)
+                                                    .labelsHidden()
+                                                    .tint(.blue)
 
-                                        Button("Remove") {
-                                            viewModel.removeFilters(filter)
-                                        }
-                                        .foregroundColor(.red)
+                                                Button(action: {
+                                                    print("Removing filter: \(filter.id)")  // Debugging here
+                                                    viewModel.removeFilters(filter)
+                                                }) {
+                                                    Image(systemName: "xmark.circle.fill")
+                                                        .foregroundColor(.red)
+                                                }
+                                        .buttonStyle(PlainButtonStyle())
                                     }
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .fill(Color(.systemGray6))
+                                            .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+                                    )
+                                    .padding(.horizontal)
                                 }
                             }
-                            .padding(.horizontal)
                         }
+
+
 
                         // Search Button
                         HStack {

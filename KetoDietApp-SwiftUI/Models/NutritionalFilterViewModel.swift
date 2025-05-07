@@ -42,17 +42,29 @@ class NutritionalFilterViewModel: ObservableObject {
         }
     }
 
-    
-    func removeFilters(_ filter: Filter){
-        filters.removeAll {$0.id == filter.id}
+    func removeFilters(_ filter: Filter) {
+        if let index = filters.firstIndex(where: { $0.id == filter.id }) {
+            filters.remove(at: index)
+            print("Removed filter with ID: \(filter.id)")
+        } else {
+            print("Attempted to remove filter, but it was not found.")
+        }
     }
+
+
+
     func searchRecipes(){
 //        isLoading = true
 //        APIService.shared.fetchRecipes(for: filters){ [weak self] recipes in
 //            self?.recipes = recipes
 //            self?.isLoading = false
 //        }
-        guard let primaryFilter = filters.first else { return }
+        let activeFilters = filters.filter { $0.isEnabled }
+            guard let primaryFilter = activeFilters.first else {
+                self.recipes = []  // No active filters
+                return
+            }
+//        guard let primaryFilter = filters.first else { return }
 //        let selectedMealsCategory = selectedMealCategory?.rawValue
         let selectedMealsCategory = selectedMealCategory == .all ? nil : selectedMealCategory.rawValue
 
