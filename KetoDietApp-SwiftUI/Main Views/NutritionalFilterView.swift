@@ -91,7 +91,7 @@ struct NutritionalFilterView: View {
                                     .foregroundColor(.primary)
                                     .padding(.horizontal)
                                 
-                                ForEach($viewModel.filters, id: \.id) { $filter in
+                                ForEach(viewModel.filters, id: \.id) { filter in
                                     HStack {
                                         VStack(alignment: .leading, spacing: 6) {
                                             Text(filter.category.rawValue)
@@ -106,9 +106,20 @@ struct NutritionalFilterView: View {
                                         
                                         Spacer()
                                         
-                                        Toggle("", isOn: $filter.isEnabled)
-                                                    .labelsHidden()
-                                                    .tint(.blue)
+                                        Toggle("", isOn: Binding(
+                                                   get: {
+                                                       filter.isEnabled
+                                                   },
+                                                   set: { newValue in
+                                                       if let index = viewModel.filters.firstIndex(where: { $0.id == filter.id }) {
+                                                           viewModel.filters[index].isEnabled = newValue
+                                                           viewModel.searchRecipes()
+                                                       }
+                                                   }
+                                               ))
+                                               .labelsHidden()
+                                               .tint(.blue)
+
 
                                                 Button(action: {
                                                     print("Removing filter: \(filter.id)")

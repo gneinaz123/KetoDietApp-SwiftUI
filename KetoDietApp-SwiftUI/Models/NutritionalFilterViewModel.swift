@@ -43,13 +43,15 @@ class NutritionalFilterViewModel: ObservableObject {
     }
 
     func removeFilters(_ filter: Filter) {
+        // Remove the filter from the filters array
         if let index = filters.firstIndex(where: { $0.id == filter.id }) {
             filters.remove(at: index)
-            print("Removed filter with ID: \(filter.id)")
-        } else {
-            print("Attempted to remove filter, but it was not found.")
         }
+        
+        // Re-run the search to reflect the updated filters
+        searchRecipes()
     }
+
 
 
 
