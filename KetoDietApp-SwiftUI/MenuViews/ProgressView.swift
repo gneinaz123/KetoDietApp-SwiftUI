@@ -82,21 +82,20 @@ struct progressTrackerView: View {
     }
     
     private func saveGoal() {
-        let newGoal = Goal(context: viewContext)
-        newGoal.id = UUID()
-        newGoal.protein = Double(protein) ?? 0.0
-        newGoal.fat = Double(fat) ?? 0.0
-        newGoal.carbohydrate = Double(carbs) ?? 0.0
-        newGoal.calories = Double(calories) ?? 0.0
+            let newGoal = Goal(context: viewContext)
+            newGoal.id = UUID()
+            newGoal.protein = Double(protein) ?? 0.0
+            newGoal.fat = Double(fat) ?? 0.0
+            newGoal.carbohydrate = Double(carbs) ?? 0.0
+            newGoal.calories = Double(calories) ?? 0.0
 
-        do {
-            try viewContext.save()
-            print("Saved successfully.")
-        } catch {
-            print("Failed to save goal: \(error.localizedDescription)")
+            do {
+                try viewContext.save()
+                print("Saved successfully.")
+            } catch {
+                print("Failed to save goal: \(error.localizedDescription)")
+            }
         }
-    }
-    
     struct NutrientProgressRow: View {
         var label: String
         var current: Double
