@@ -41,12 +41,14 @@ struct ViewRecipe: View {
                 ScrollView {
 
                     RecipeDetailView(recipe: recipe)
+                        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
 
-                    RecipeActionButtons(isSaved: $isSaved,
-                                        isDone: $isDone, recipe: recipe,
-                                        viewContext: PersistenceController.shared.container.viewContext
-//                                        viewContext: viewContext
-                    )
+
+//                    RecipeActionButtons(isSaved: $isSaved,
+//                                        isDone: $isDone, recipe: recipe,
+//                                        viewContext: PersistenceController.shared.container.viewContext
+////                                        viewContext: viewContext
+//                    )
 
                     
                 }

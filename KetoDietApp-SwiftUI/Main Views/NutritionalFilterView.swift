@@ -110,7 +110,7 @@ struct NutritionalFilterView: View {
                                                     .tint(.blue)
 
                                                 Button(action: {
-                                                    print("Removing filter: \(filter.id)")  // Debugging here
+                                                    print("Removing filter: \(filter.id)")
                                                     viewModel.removeFilters(filter)
                                                 }) {
                                                     Image(systemName: "xmark.circle.fill")

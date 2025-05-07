@@ -13,50 +13,60 @@ struct RecipeActionButtons: View {
     @Binding var isDone: Bool
     let recipe: RecipeDetails
     let viewContext: NSManagedObjectContext
-//    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         HStack(spacing: 20) {
+            // Save Toggle Button
             Button(action: {
                 isSaved.toggle()
                 if isSaved {
                     saveToRecent(recipe)
                 }
             }) {
-                Text("Save Recipe")
-                    .fontWeight(.semibold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(isSaved ? Color.blue : Color.clear)
-                    .foregroundColor(isSaved ? .white : .blue)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 2)
-                    )
-                    .cornerRadius(10)
+                HStack {
+                    Text("Save")
+                    if isSaved {
+                        Image(systemName: "checkmark")
+                    }
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .background(isSaved ? Color.blue.opacity(0.2) : Color.gray.opacity(0.1))
+                .foregroundColor(isSaved ? .blue : .primary)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(isSaved ? Color.blue : Color.gray, lineWidth: 1)
+                )
+                .clipShape(Capsule())
             }
 
+            // Done Toggle Button
             Button(action: {
                 isDone.toggle()
                 if isDone {
                     saveToConsume(recipe)
                 }
             }) {
-                Text("Done")
-                    .fontWeight(.semibold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(isDone ? Color.blue : Color.clear)
-                    .foregroundColor(isDone ? .white : .blue)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 2)
-                    )
-                    .cornerRadius(10)
+                HStack {
+                    Text("Done")
+                    if isDone {
+                        Image(systemName: "checkmark")
+                    }
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .background(isDone ? Color.green.opacity(0.2) : Color.gray.opacity(0.1))
+                .foregroundColor(isDone ? .green : .primary)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(isDone ? Color.green : Color.gray, lineWidth: 1)
+                )
+                .clipShape(Capsule())
             }
         }
+
         .padding([.horizontal, .bottom])
-        
+        .frame(maxWidth: .infinity)
     }
 
 //    private func saveToRecent(_ recipe: RecipeDetails) {
@@ -179,7 +189,22 @@ struct RecipeActionButtons: View {
             }
         }
     }
+    // Remove the recipe from 'RecentRecipe' entity in Core Data
+        private func removeFromRecent(_ recipe: RecipeDetails) {
+            let fetchRequest: NSFetchRequest<RecentRecipe> = RecentRecipe.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "title == %@", recipe.recipe)
 
+            do {
+                let results = try viewContext.fetch(fetchRequest)
+                if let existingRecipe = results.first {
+                    viewContext.delete(existingRecipe)
+                    try viewContext.save()
+                    print("Successfully removed from Recent Recipe")
+                }
+            } catch {
+                print("Failed to remove from Recent Recipe: \(error)")
+            }
+        }
 
 
     private func saveToConsume(_ recipe: RecipeDetails){
@@ -199,6 +224,22 @@ struct RecipeActionButtons: View {
             print("Failed to save consued recipe: \(error)")
         }
     }
+    // Remove the recipe from 'ConsumedRecipe' entity in Core Data
+        private func removeFromConsume(_ recipe: RecipeDetails) {
+            let fetchRequest: NSFetchRequest<ConsumedRecipe> = ConsumedRecipe.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "title == %@", recipe.recipe)
+
+            do {
+                let results = try viewContext.fetch(fetchRequest)
+                if let existingRecipe = results.first {
+                    viewContext.delete(existingRecipe)
+                    try viewContext.save()
+                    print("Successfully removed from Consumed Recipe")
+                }
+            } catch {
+                print("Failed to remove from Consumed Recipe: \(error)")
+            }
+        }
 }
 
 
