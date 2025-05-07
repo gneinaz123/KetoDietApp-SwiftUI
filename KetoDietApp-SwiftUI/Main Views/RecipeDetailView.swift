@@ -133,9 +133,9 @@ struct RecipeDetailView: View {
         }
         .navigationTitle(recipe.recipe)
         .onAppear {
-                    isSaved = isRecipeAlreadySaved(recipe)
-                    isDone = isRecipeAlreadyConsumed(recipe)
-                }
+            isSaved = isRecipeAlreadySaved(recipe)
+            isDone = isRecipeAlreadyConsumed(recipe)
+        }
     }
     private func isRecipeAlreadySaved(_ recipe: RecipeDetails) -> Bool {
            let fetch: NSFetchRequest<RecentRecipe> = RecentRecipe.fetchRequest()

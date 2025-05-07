@@ -69,56 +69,20 @@ struct RecipeActionButtons: View {
         .frame(maxWidth: .infinity)
     }
 
-//    private func saveToRecent(_ recipe: RecipeDetails) {
-//        let newRecentRecipe = RecentRecipe(context: viewContext)
+
 //        newRecentRecipe.id = UUID()
-//        newRecentRecipe.title = recipe.recipe
-//        newRecentRecipe.category = recipe.category.category
-//        newRecentRecipe.calories = Int64(recipe.calories ?? 0)
-//        newRecentRecipe.protein = Double(recipe.protein_in_grams ?? 0)
-//        newRecentRecipe.fat = Double(recipe.fat_in_grams ?? 0)
-//        newRecentRecipe.carbs = Double(recipe.carbohydrates_in_grams ?? 0)
-////        newRecentRecipe.id = UUID()
-////        newRecentRecipe.title = "Test Recipe"
-////        newRecentRecipe.category = "Test Category"
-////        newRecentRecipe.calories = 100
-////        newRecentRecipe.protein = 10
-////        newRecentRecipe.fat = 10
-////        newRecentRecipe.carbs = 5
+//        newRecentRecipe.title = "Test Recipe"
+//        newRecentRecipe.category = "Test Category"
+//        newRecentRecipe.calories = 100
+//        newRecentRecipe.protein = 10
+//        newRecentRecipe.fat = 10
+//        newRecentRecipe.carbs = 5
 //        NSLog("excuting")
-//        print("viewContext: \(viewContext)")
-//        print("ID: \(newRecentRecipe.id?.uuidString ?? "nil")")
-//            print("Title: \(newRecentRecipe.title ?? "nil")")
-//        print("category: \(newRecentRecipe.category ?? "nil")")
-////            print("Image: \(newRecipe.image ?? "nil")")
-//            print("Calories: \(newRecentRecipe.calories)")
-//            print("Protein: \(newRecentRecipe.protein)")
-//            print("Fat: \(newRecentRecipe.fat)")
-//            print("Carbs: \(newRecentRecipe.carbs)")
-//            
-//
-//        do {
-//            try viewContext.save()
-//            print("Saved to Recent Recipe")
-//        } catch let error as NSError {
-//            print("Attributes: \(RecentRecipe.entity().attributesByName.keys)")
-//
-//            print("Failed to save recent recipe:")
-//            print("Domain: \(error.domain)")
-//            print("Code: \(error.code)")
-//            print("Description: \(error.localizedDescription)")
-//            print("User Info: \(error.userInfo)")
-//        }
-//    }
+
+
     private func saveToRecent(_ recipe: RecipeDetails) {
         print("Starting saveToRecent...")
 
-//        if let persistentStoreCoordinator = viewContext.persistentStoreCoordinator {
-//                print("Persistent Store Coordinator is available: \(persistentStoreCoordinator)")
-//            } else {
-//                print("Persistent Store Coordinator is not available")
-//                return
-//            }
         guard let persistentStoreCoordinator = viewContext.persistentStoreCoordinator else {
             print("Persistent Store Coordinator is not available")
             return
@@ -134,10 +98,8 @@ struct RecipeActionButtons: View {
             } else {
                 print("Unable to access the persistent store coordinator or managed object model.")
             }
-        // Ensure that the viewContext is properly injected
 //        assert(viewContext != nil, "viewContext is nil! Make sure it's injected properly.")
 //        
-//        // Confirm that the persistent container is loaded
 //        guard let modelName = viewContext.persistentStoreCoordinator?.managedObjectModel,
 //              let entities = modelName.entitiesByName["RecentRecipe"] else {
 //            print("Unable to access model or entity description for RecentRecipe")
@@ -163,7 +125,7 @@ struct RecipeActionButtons: View {
             print("Protein: \(newRecentRecipe.protein)")
             print("Fat: \(newRecentRecipe.fat)")
             print("Carbs: \(newRecentRecipe.carbs)")
-//                    PersistenceController.shared.saveContext()
+
             print("viewContext before save: \(viewContext)")
             do {
 //                PersistenceController.shared.saveContext()
@@ -175,36 +137,36 @@ struct RecipeActionButtons: View {
                 let recipes = try viewContext.fetch(fetchRequest)
                 print("Fetched recipes count: \(recipes.count)")
             } catch let error as NSError {
-                // More detailed error information
+                // error information
                 print("Core Data Save Error")
                 print("Domain: \(error.domain)")
                 print("Code: \(error.code)")
                 print("Description: \(error.localizedDescription)")
                 print("User Info: \(error.userInfo)")
                 
-                // Let's also print the persistent store details
+                // print the persistent store details
                 if let store = viewContext.persistentStoreCoordinator?.persistentStores.first {
                     print("Persistent Store: \(store)")
                 }
             }
         }
     }
-    // Remove the recipe from 'RecentRecipe' entity in Core Data
-        private func removeFromRecent(_ recipe: RecipeDetails) {
-            let fetchRequest: NSFetchRequest<RecentRecipe> = RecentRecipe.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "title == %@", recipe.recipe)
+    // Remove the recipe from Core Data
+    private func removeFromRecent(_ recipe: RecipeDetails) {
+        let fetchRequest: NSFetchRequest<RecentRecipe> = RecentRecipe.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", recipe.recipe)
 
-            do {
-                let results = try viewContext.fetch(fetchRequest)
-                if let existingRecipe = results.first {
-                    viewContext.delete(existingRecipe)
-                    try viewContext.save()
-                    print("Successfully removed from Recent Recipe")
-                }
-            } catch {
-                print("Failed to remove from Recent Recipe: \(error)")
+        do {
+            let results = try viewContext.fetch(fetchRequest)
+            if let existingRecipe = results.first {
+                viewContext.delete(existingRecipe)
+                try viewContext.save()
+                print("Successfully removed from Recent Recipe")
             }
+        } catch {
+            print("Failed to remove from Recent Recipe: \(error)")
         }
+    }
 
 
     private func saveToConsume(_ recipe: RecipeDetails){
@@ -224,22 +186,22 @@ struct RecipeActionButtons: View {
             print("Failed to save consued recipe: \(error)")
         }
     }
-    // Remove the recipe from 'ConsumedRecipe' entity in Core Data
-        private func removeFromConsume(_ recipe: RecipeDetails) {
-            let fetchRequest: NSFetchRequest<ConsumedRecipe> = ConsumedRecipe.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "title == %@", recipe.recipe)
+    // Remove the recipe in Core Data
+    private func removeFromConsume(_ recipe: RecipeDetails) {
+        let fetchRequest: NSFetchRequest<ConsumedRecipe> = ConsumedRecipe.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", recipe.recipe)
 
-            do {
-                let results = try viewContext.fetch(fetchRequest)
-                if let existingRecipe = results.first {
-                    viewContext.delete(existingRecipe)
-                    try viewContext.save()
-                    print("Successfully removed from Consumed Recipe")
-                }
-            } catch {
-                print("Failed to remove from Consumed Recipe: \(error)")
+        do {
+            let results = try viewContext.fetch(fetchRequest)
+            if let existingRecipe = results.first {
+                viewContext.delete(existingRecipe)
+                try viewContext.save()
+                print("Successfully removed from Consumed Recipe")
             }
+        } catch {
+            print("Failed to remove from Consumed Recipe: \(error)")
         }
+    }
 }
 
 
