@@ -30,7 +30,7 @@ struct NutritionalFilterView: View {
                             }
                         }
 
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: 400)
                         .padding(.horizontal)
 
                         // Min / Max inputs + Add button
@@ -78,7 +78,7 @@ struct NutritionalFilterView: View {
 
 
                         }
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: 550)
                         .padding(.horizontal)
 
                         // Active Filters
