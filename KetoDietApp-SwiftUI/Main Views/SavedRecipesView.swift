@@ -14,21 +14,36 @@ struct SavedRecipesView: View {
         entity: RecentRecipe.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \RecentRecipe.title, ascending: true)]
     ) var RecentRecipes: FetchedResults<RecentRecipe>
+    
+    // Remove duplicates by title
+        var uniqueRecipes: [RecentRecipe] {
+            Dictionary(grouping: RecentRecipes, by: { $0.title ?? "" })
+                .compactMap { $0.value.first }
+        }
     var body: some View {
-        NavigationStack{
-            ScrollView{
-                LazyVStack(spacing: 16){
-                    ForEach(RecentRecipes){ recipe in
+        NavigationStack {
+            ScrollView {
+                LazyVStack(spacing: 16) {
+                    
+                    Text("Saved Recipes")
+                        .font(.title)
+                        .foregroundColor(.blue)
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
+                        .fontWeight(.bold)
+                    ForEach(uniqueRecipes) { recipe in
                         SavedRecipeCard(recipe: recipe)
                     }
                 }
                 .padding()
             }
-            .navigationTitle("Saved Recipes")
         }
+        .navigationTitle("Saved Recipes")
     }
+    
 }
-
 #Preview {
     SavedRecipesView()
+        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
 }
+
