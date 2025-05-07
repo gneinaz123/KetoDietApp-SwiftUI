@@ -22,7 +22,7 @@ struct ContentView: View {
                                 NutritionalFilterView()) {
                             Label("Recipe", systemImage:"heart")
                         }
-                        NavigationLink(destination: MealPlanner()) {
+                        NavigationLink(destination: SavedRecipesView()) {
                             Label("Recipe", systemImage:"bell")
                         }
                         NavigationLink(destination: progressTrackerView()) {
@@ -47,7 +47,7 @@ struct ContentView: View {
                             Label("Recipe", systemImage: "heart")
                         }
                     
-                    MealPlanner()
+                    SavedRecipesView()
                         .tabItem{Label("Planner", systemImage: "bell")}
                     
                     progressTrackerView()
