@@ -23,13 +23,21 @@ struct SavedRecipesView: View {
     var body: some View {
         
         // Daily Target Section
-        BlueBoxText(text: "Saved Recipes").padding(.bottom,30).padding(.top,10)
-        NavigationStack {
+              NavigationStack {
             ScrollView {
+                
+               
+                
+                BlueBoxText(text: "Saved Recipes").padding(.bottom,30).padding(.top,10)
+                
                 LazyVStack(spacing: 16) {
                 
-                    
-                   
+                    //Text("Saved Recipes")
+                              //              .font(.title)
+                               //             .foreground//Color(.blue)
+                             //               .frame(maxWidth: .infinity)
+                              //              .multilineTextAlignment(.center)
+                           //                 .fontWeight(.bold)
                     ForEach(uniqueRecipes) { recipe in
                         SavedRecipeCard(recipe: recipe)
                     }
