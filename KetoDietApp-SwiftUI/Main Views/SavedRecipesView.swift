@@ -34,6 +34,11 @@ struct SavedRecipesView: View {
                     ForEach(uniqueRecipes) { recipe in
                         SavedRecipeCard(recipe: recipe)
                     }
+//                    ForEach(uniqueRecipes) { recipe in
+//                                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+//                                                SavedRecipeCard(recipe: recipe)
+//                                            }
+//                                        }
                 }
                 .padding()
             }

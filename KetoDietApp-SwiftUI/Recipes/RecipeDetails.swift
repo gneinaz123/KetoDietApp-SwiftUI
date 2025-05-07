@@ -62,5 +62,6 @@ struct RecipeDetails: Identifiable, Decodable{
             let key = CodingKeys(stringValue: "directions_step_\($0)")!
             return try? container.decodeIfPresent(String.self, forKey: key)
         }
+        
     }
 }
