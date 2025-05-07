@@ -12,4 +12,5 @@ struct Filter: Identifiable, Hashable{
     var category: NutrientCategory
     var min: Int
     var max: Int
+    var isEnabled: Bool = true
 }

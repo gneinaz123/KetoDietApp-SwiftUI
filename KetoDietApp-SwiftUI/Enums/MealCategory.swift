@@ -8,6 +8,7 @@
 import Foundation
 
 enum MealCategory: String, CaseIterable, Identifiable {
+    case all = "All"
     case breakfast = "Breakfast Recipes"
     case Appetizer = "Appetizer and Snacks Recipes"
     case beef = "Beef Recipes"

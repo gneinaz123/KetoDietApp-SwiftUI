@@ -10,7 +10,7 @@ import SwiftUI
 
 class NutritionalFilterViewModel: ObservableObject {
     @Published var selectedCategory: NutrientCategory = .protein
-    @Published var selectedMealCategory: MealCategory? = nil
+    @Published var selectedMealCategory: MealCategory = .all
     @Published var minAmount: String = ""
     @Published var maxAmount: String = ""
     @Published var filters : [Filter] = []
@@ -25,26 +25,51 @@ class NutritionalFilterViewModel: ObservableObject {
         self.service = service
     }
     
-    func addFilter(){
-        guard let min = Int(minAmount), let max = Int(maxAmount) else{ return }
-        let newFilter = Filter(category: selectedCategory, min: min, max: max)
-        filters.append(newFilter)
-        minAmount = ""
-        maxAmount = ""
+    func addFilter() {
+        let validation = NutritionalFilterValidator.validate(minText: minAmount, maxText: maxAmount)
+        
+        if let error = validation.error {
+            self.errorMessage = error
+            return
+        }
+
+        if let min = validation.min, let max = validation.max {
+            let newFilter = Filter(category: selectedCategory, min: min, max: max)
+            filters.append(newFilter)
+            minAmount = ""
+            maxAmount = ""
+            errorMessage = nil
+        }
     }
-    
-    func removeFilters(_ filter: Filter){
-        filters.removeAll {$0.id == filter.id}
+
+    func removeFilters(_ filter: Filter) {
+        // Remove the filter from the filters array
+        if let index = filters.firstIndex(where: { $0.id == filter.id }) {
+            filters.remove(at: index)
+        }
+        
+        // Re-run the search to reflect the updated filters
+        searchRecipes()
     }
+
+
+
+
     func searchRecipes(){
 //        isLoading = true
 //        APIService.shared.fetchRecipes(for: filters){ [weak self] recipes in
 //            self?.recipes = recipes
 //            self?.isLoading = false
 //        }
-        guard let primaryFilter = filters.first else { return }
-        let selectedMealsCategory = selectedMealCategory?.rawValue
-        
+        let activeFilters = filters.filter { $0.isEnabled }
+            guard let primaryFilter = activeFilters.first else {
+                self.recipes = []  // No active filters
+                return
+            }
+//        guard let primaryFilter = filters.first else { return }
+//        let selectedMealsCategory = selectedMealCategory?.rawValue
+        let selectedMealsCategory = selectedMealCategory == .all ? nil : selectedMealCategory.rawValue
+
         APIService.shared.fetchRecipes(for: primaryFilter.category.apiField, min: primaryFilter.min, max: primaryFilter.max){ [weak self] fetched in
             guard let self = self else { return }
             
