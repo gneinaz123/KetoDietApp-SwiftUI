@@ -20,6 +20,13 @@ struct RecipeDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
+                Text(recipe.recipe)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
+                        .multilineTextAlignment(.center)
+                        .padding(.top)
+                        .frame(maxWidth: .infinity)
                 // Meal Category
                 Text("Meal category: \(recipe.category.category)")
                     .font(.headline)
@@ -27,7 +34,7 @@ struct RecipeDetailView: View {
                     .padding(.top)
 
                 // Nutritional Info
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Nutritional Information")
                         .font(.title3).bold()
 
@@ -70,10 +77,19 @@ struct RecipeDetailView: View {
                         ForEach(0..<recipe.ingredients.count, id: \.self) { index in
                             let amount = recipe.measurements[index] ?? 0
                             let ingredient = recipe.ingredients[index]
-                            Text("• \(amount) \(ingredient)")
-                                .font(.body)
+                            
+                            HStack(alignment: .top, spacing: 8) {
+                                Image(systemName: "circle.fill") // SF Symbol bullet
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 8)) 
+
+                                Text("\(amount.cleanAmount) \(ingredient)")
+                                    .font(.body)
+                                    
+                            }
                         }
                     }
+
                 }
                 .padding(.bottom)
 

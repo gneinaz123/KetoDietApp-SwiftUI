@@ -12,9 +12,9 @@ struct RecipeRow: View {
     
     var body: some View {
         NavigationLink(destination: ViewRecipe(recipe: recipe)) {
-            HStack(alignment: .top, spacing: 16) { // Add spacing between image and text
+            HStack(alignment: .top, spacing: 16) {
                 RecipeCard(recipe: recipe)
-                    .frame(maxWidth: .infinity) // Ensure RecipeCard takes available space
+                    .frame(maxWidth: .infinity) 
                 
                 Image(systemName: "chevron.right")
                     .foregroundColor(.gray)
