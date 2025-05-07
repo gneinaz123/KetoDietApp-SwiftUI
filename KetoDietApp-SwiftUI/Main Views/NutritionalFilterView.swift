@@ -16,10 +16,12 @@ struct NutritionalFilterView: View {
                     VStack(alignment: .center, spacing: 20) {
                         
                         Text("Customize Your Nutritional Goals")
-                            .font(.title3)
+                            .font(.title2)
+                            .fontWeight(.bold)
                             .bold()
                             .multilineTextAlignment(.center)
                             .padding(.top)
+                            .foregroundColor(.blue)
 
                         // Nutrient Category Picker
                         StyledDropdown(selection:$viewModel.selectedCategory) {
