@@ -32,7 +32,7 @@ struct progressTrackerView: View {
             VStack{
                
                     HStack {
-                    GoalInputField(title: "Protein (g)", text: $protein)
+                    GoalInputField(title: "Protein (mg)", text: $protein)
                     GoalInputField(title: "Fat (g)", text: $fat)
                 }
                     
@@ -60,10 +60,10 @@ struct progressTrackerView: View {
          
             if let latestGoal = savedGoals.first {
                 // Replace current values with real consumption logic when ready
-                NutrientProgressRow(label: "Protein", current: 60, goal: latestGoal.protein, unit: "g")
-                NutrientProgressRow(label: "Fat", current: 45, goal: latestGoal.fat, unit: "g")
-                NutrientProgressRow(label: "Carbs", current: 130, goal: latestGoal.carbohydrate, unit: "g")
-                NutrientProgressRow(label: "Calories", current: 1500, goal: latestGoal.calories, unit: "kcal")
+                NutrientProgressRow(label: "Protein", current: 10, goal: latestGoal.protein, unit: "mg")
+                NutrientProgressRow(label: "Fat", current: 30, goal: latestGoal.fat, unit: "g")
+                NutrientProgressRow(label: "Carbs", current: 325, goal: latestGoal.carbohydrate, unit: "g")
+                NutrientProgressRow(label: "Calories", current: 3000, goal: latestGoal.calories, unit: "kcal")
             } else {
                 Text("No saved goals yet.")
                     .foregroundColor(.gray)
@@ -105,14 +105,19 @@ struct progressTrackerView: View {
 
         var body: some View {
             let safeCurrent = min(current, goal)
+            let progressColor = Color(red: 0.196, green: 0.290, blue: 0.659)
+            let percentage = Int((goal / max(current, 1)) * 100)
 
             HStack {
                 ProgressView(value: safeCurrent, total: goal) {
-                    Text("\(label): \(Int(current)) / \(Int(goal)) \(unit)") .foregroundColor(Color(red: 0.196, green: 0.290, blue: 0.659))                }
-                .progressViewStyle(LinearProgressViewStyle(tint: Color(red: 0.196, green: 0.290, blue: 0.659)))
+                    Text("\(label): \(Int(goal)) / \(Int(current)) \(unit)")
+
+                        .foregroundColor(progressColor)
+                }
+                .progressViewStyle(LinearProgressViewStyle(tint: progressColor))
                 .frame(height: 20)
-                
-                Text("\(Int((current / max(goal, 1)) * 100))%") // Avoid division by zero
+
+                Text("\(percentage)%")
                     .font(.subheadline)
                     .padding(3)
                     .frame(width: 50, alignment: .trailing)
@@ -127,6 +132,7 @@ struct progressTrackerView: View {
             .padding(.horizontal, 30)
         }
     }
+
 
     struct GoalInputField: View {
         let title: String

@@ -22,7 +22,7 @@ struct NutritionalFilterView: View {
                             .padding(.top)
 
                         // Nutrient Category Picker
-                        StyledDropdown(selection: $viewModel.selectedCategory) {
+                        StyledDropdown(selection:$viewModel.selectedCategory) {
                             Label("Nutrient Category", systemImage: "line.horizontal.3.decrease.circle")
                         } content: {
                             ForEach(NutrientCategory.allCases) { category in
@@ -186,4 +186,9 @@ struct NutritionalFilterView_Previews: PreviewProvider {
         NutritionalFilterView()
             .environmentObject(NutritionalFilterViewModel())
     }
+}
+
+
+#Preview {
+    HomeView()
 }
