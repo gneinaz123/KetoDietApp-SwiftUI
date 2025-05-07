@@ -50,6 +50,7 @@ struct NutritionalFilterView: View {
                                 viewModel.addFilter()
                                 viewModel.searchRecipes()
                             }
+                            .accessibilityIdentifier("AddButton")
                             .padding(.vertical, 16)
                             .padding(.horizontal, 19)
                             .background(Color.accentColor)
