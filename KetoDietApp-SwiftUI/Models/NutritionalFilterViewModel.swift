@@ -10,7 +10,7 @@ import SwiftUI
 
 class NutritionalFilterViewModel: ObservableObject {
     @Published var selectedCategory: NutrientCategory = .protein
-    @Published var selectedMealCategory: MealCategory? = nil
+    @Published var selectedMealCategory: MealCategory = .all
     @Published var minAmount: String = ""
     @Published var maxAmount: String = ""
     @Published var filters : [Filter] = []
@@ -53,8 +53,9 @@ class NutritionalFilterViewModel: ObservableObject {
 //            self?.isLoading = false
 //        }
         guard let primaryFilter = filters.first else { return }
-        let selectedMealsCategory = selectedMealCategory?.rawValue
-        
+//        let selectedMealsCategory = selectedMealCategory?.rawValue
+        let selectedMealsCategory = selectedMealCategory == .all ? nil : selectedMealCategory.rawValue
+
         APIService.shared.fetchRecipes(for: primaryFilter.category.apiField, min: primaryFilter.min, max: primaryFilter.max){ [weak self] fetched in
             guard let self = self else { return }
             

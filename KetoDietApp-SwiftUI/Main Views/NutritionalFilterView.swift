@@ -22,22 +22,14 @@ struct NutritionalFilterView: View {
                             .padding(.top)
 
                         // Nutrient Category Picker
-                        HStack {
-                            Picker("Select Category", selection: $viewModel.selectedCategory) {
-                                ForEach(NutrientCategory.allCases) { category in
-                                    Text(category.rawValue).tag(category)
-                                }
+                        StyledDropdown(selection: $viewModel.selectedCategory) {
+                            Label("Nutrient Category", systemImage: "line.horizontal.3.decrease.circle")
+                        } content: {
+                            ForEach(NutrientCategory.allCases) { category in
+                                Text(category.rawValue).tag(category)
                             }
-                            .pickerStyle(MenuPickerStyle())
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                            )
                         }
+
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal)
 
@@ -76,21 +68,15 @@ struct NutritionalFilterView: View {
 
                         // Meal Category Picker
                         HStack {
-                            Picker("Select Meal Category", selection: $viewModel.selectedMealCategory) {
-                                Text("All").tag(MealCategory?.none)
+                            StyledDropdown(selection: $viewModel.selectedMealCategory) {
+                                Label("Meal Category", systemImage: "fork.knife.circle")
+                            } content: {
                                 ForEach(MealCategory.allCases, id: \.self) { category in
-                                    Text(category.rawValue).tag(Optional(category))
+                                    Text(category.rawValue).tag(category)
                                 }
                             }
-                            .pickerStyle(MenuPickerStyle())
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                            )
+
+
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal)
