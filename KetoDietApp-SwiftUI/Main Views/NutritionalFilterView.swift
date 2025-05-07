@@ -46,6 +46,7 @@ struct NutritionalFilterView: View {
 
                             Button("Add") {
                                 viewModel.addFilter()
+                                viewModel.searchRecipes()
                             }
                             .padding(.vertical, 16)
                             .padding(.horizontal, 19)
@@ -112,6 +113,7 @@ struct NutritionalFilterView: View {
                                                 Button(action: {
                                                     print("Removing filter: \(filter.id)")
                                                     viewModel.removeFilters(filter)
+                                                    viewModel.searchRecipes()
                                                 }) {
                                                     Image(systemName: "xmark.circle.fill")
                                                         .foregroundColor(.red)

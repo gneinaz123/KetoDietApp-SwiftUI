@@ -73,7 +73,7 @@ final class PersistenceController {
 
     // Function to save context
     func saveContext() {
-        let context = container.viewContext // You can also use getViewContext() here
+        let context = container.viewContext 
         if context.hasChanges {
             do {
                 try context.save()
