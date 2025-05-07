@@ -21,6 +21,7 @@
         <attribute name="category" attributeType="String"/>
         <attribute name="fat" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="protein" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
     </entity>

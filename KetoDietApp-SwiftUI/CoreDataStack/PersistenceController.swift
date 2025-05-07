@@ -4,65 +4,8 @@
 //
 //  Created by user271428 on 5/4/25.
 //
-
-import CoreData
-
-//struct PersistenceController{
-//    static let shared = PersistenceController()
-//    
-//    let container : NSPersistentContainer
-//    
-////    init(){
-////        container = NSPersistentContainer(name: "RecipeModel")
-////        container.loadPersistentStores{_, error in
-////            if let error = error as NSError? {
-////                fatalError("Unresolved Error \(error), \(error.userInfo)")
-////            }
-////        }
-//    init(inMemory: Bool = false) {
-//            container = NSPersistentContainer(name: "RecipeModel") // Must match your `.xcdatamodeld` file name
-//            if inMemory {
-//                container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
-//            }
-//            container.loadPersistentStores { description, error in
-//                if let error = error {
-//                    fatalError("Core Data store failed: \(error.localizedDescription)")
-//                }
-//            }
-//        }
-//    
-//}
-// Core Data Stack Setup
-//class PersistenceController {
-//    static let shared = PersistenceController() // Singleton instance
 //
-//    // Persistent container for Core Data
-//    let container: NSPersistentContainer
 //
-//    init() {
-//        container = NSPersistentContainer(name: "RecipeModel") 
-//        print("Persistent container initialized: \(container)")
-//        print("View context: \(container.viewContext)")
-//
-//        let storeURL = container.persistentStoreDescriptions.first?.url
-//        let description = NSPersistentStoreDescription(url: storeURL!)
-//
-//        description.shouldMigrateStoreAutomatically = true
-//        description.shouldInferMappingModelAutomatically = true
-//        container.persistentStoreDescriptions = [description]
-//
-//        container.loadPersistentStores { storeDescription, error in
-//            if let error = error as NSError? {
-//                fatalError("Unresolved error \(error), \(error.userInfo)")
-//            }
-//        }
-//
-//    }
-//
-//    var viewContext: NSManagedObjectContext {
-//        return container.viewContext
-//    }
-//    
 import CoreData
 
 final class PersistenceController {
@@ -79,13 +22,12 @@ final class PersistenceController {
         }
 
         let description = container.persistentStoreDescriptions.first!
-
-        // DEBUG: Print store URL
+        
+        // Print store URL
         if let storeURL = description.url {
-            print("🗂 Core Data store location: \(storeURL.path)")
+            print("Core Data store location: \(storeURL.path)")
         }
 
-        // Clear store if migration fails
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
 
@@ -115,15 +57,34 @@ final class PersistenceController {
                     fatalError("Unresolved error \(error), \(error.userInfo)")
                 }
             } else {
-                print("✅ Core Data loaded successfully.")
+                print("SQLite DB Path: \(storeDescription.url?.path ?? "Unknown path")")
+                print("Core Data loaded successfully.")
             }
         }
 
-        // DEBUG: Print model schema
+        // Print model schema
         logModelSchema(model: container.managedObjectModel)
     }
 
-    /// Prints all entities and their attributes in the current model
+    // Function to access the viewContext
+    func getViewContext() -> NSManagedObjectContext {
+        return container.viewContext
+    }
+
+    // Function to save context
+    func saveContext() {
+        let context = container.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+                print("Successfully saved to Core Data")
+            } catch {
+                print("Failed to save context: \(error)")
+            }
+        }
+    }
+
+    // Logs the schema of the managed object model
     func logModelSchema(model: NSManagedObjectModel) {
         print("Core Data Model Schema:")
         for entity in model.entities {
@@ -134,9 +95,4 @@ final class PersistenceController {
         }
     }
 }
-
-
-
-
-
 
