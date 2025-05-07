@@ -67,9 +67,11 @@ struct NutritionalFilterView: View {
                         if let error = viewModel.errorMessage {
                             Text(error)
                                 .foregroundColor(.red)
-                                .font(.footnote)
+                                .font(.callout)
                                 .padding(.horizontal)
                                 .multilineTextAlignment(.center)
+                                .lineLimit(nil)
+                                .frame(maxWidth: .infinity)
                         }
 
                         // Meal Category Picker
@@ -127,7 +129,7 @@ struct NutritionalFilterView: View {
                             }
                             .padding(.vertical, 20)
                             .padding(.horizontal, 20)
-                            .frame(width: geometry.size.width * 0.2)
+                            .frame(width: geometry.size.height * 0.2)
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .clipShape(Capsule())
