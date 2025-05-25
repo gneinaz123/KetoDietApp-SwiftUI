@@ -9,14 +9,36 @@ import XCTest
 
 final class KetoDietApp_SwiftUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let app = XCUIApplication()
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
+        override func setUpWithError() throws {
+            continueAfterFailure = false
+            app.launch()
+        }
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
+        func testShowErrorWhenAddEmptyValues() throws {
+            // Expecting error if no values are entered
+            app.buttons["Add"].tap()
+            
+            let errorText = app.staticTexts["Please enter valid numbers for min and max."]
+            XCTAssertTrue(errorText.waitForExistence(timeout: 2))
+        }
+        func testAddValidFilterShowsFilter() {
+            let minField = app.textFields["MinInput"]
+            let maxField = app.textFields["MaxInput"]
+            let addButton = app.buttons["AddButton"]
+
+            minField.tap()
+            minField.typeText("10")
+
+            maxField.tap()
+            maxField.typeText("30")
+
+            addButton.tap()
+
+            let newFilter = app.staticTexts["Range: 10 - 30g"]
+            XCTAssertTrue(newFilter.waitForExistence(timeout: 2))
+        }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.

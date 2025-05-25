@@ -15,6 +15,7 @@ struct KetoDietApp_SwiftUIApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(NutritionalFilterViewModel())
                 .onAppear {
                     print("Passed context to ContentView: \(persistenceController.container.viewContext)")
                     print("Using store: \(PersistenceController.shared.container.persistentStoreDescriptions.first?.url?.path ?? "Unknown")")

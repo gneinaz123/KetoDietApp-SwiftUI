@@ -29,9 +29,22 @@
 		BEE501D02DCBD0FE00896AAC /* KetoDietApp-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KetoDietApp-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BEF74A112DE2A010000DA79D /* Exceptions for "KetoDietApp-SwiftUI" folder in "KetoDietApp-SwiftUI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BE18CCAD2DC4938C00306827 /* KetoDietApp-SwiftUI */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BE18CCB02DC4938C00306827 /* KetoDietApp-SwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BEF74A112DE2A010000DA79D /* Exceptions for "KetoDietApp-SwiftUI" folder in "KetoDietApp-SwiftUI" target */,
+			);
 			path = "KetoDietApp-SwiftUI";
 			sourceTree = "<group>";
 		};
